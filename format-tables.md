@@ -99,36 +99,60 @@ For North Texas, heat pumps handle most winter days efficiently.
 
 ## HTML Structure
 
-### Basic Comparison Table
+### Standard Table Template (Bootstrap 5)
 ```html
-<table>
-  <thead>
-    <tr>
-      <th>Factor</th>
-      <th>Option A</th>
-      <th>Option B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Cost</td>
-      <td>$X,XXX</td>
-      <td>$X,XXX</td>
-    </tr>
-    <tr>
-      <td>Efficiency</td>
-      <td>XX SEER</td>
-      <td>XX AFUE</td>
-    </tr>
-  </tbody>
+<table class="table table-striped table-bordered table-hover mt-5 mb-5">
+    <caption>Descriptive Table Title</caption>
+    <thead>
+        <tr>
+            <th scope="col">Factor</th>
+            <th scope="col">Option A</th>
+            <th scope="col">Option B</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Cost</th>
+            <td>$X,XXX</td>
+            <td>$X,XXX</td>
+        </tr>
+        <tr>
+            <th scope="row">Efficiency</th>
+            <td>XX SEER</td>
+            <td>XX AFUE</td>
+        </tr>
+    </tbody>
 </table>
 ```
 
-### Responsive Wrapper (if needed)
+### Required Classes
+- `table` - Base Bootstrap table styling
+- `table-striped` - Alternating row colors for readability
+- `table-bordered` - Cell borders
+- `table-hover` - Row highlight on hover
+- `mt-5 mb-5` - Vertical spacing (margin top/bottom)
+
+### Required Elements
+- `<caption>` - Descriptive title (accessibility + context)
+- `<thead>` with `<th scope="col">` - Column headers
+- `<th scope="row">` - Row headers in first column (accessibility)
+
+### Responsive Wrapper (for wide tables)
 ```html
 <div class="table-responsive">
-  <table>...</table>
+    <table class="table table-striped table-bordered table-hover mt-5 mb-5">
+        ...
+    </table>
 </div>
+```
+
+### Adding Detail to Row Headers
+Use `<small>` for supplementary info:
+```html
+<th scope="row">
+    Air filter check<br>
+    <small>Located in return duct or furnace cabinet</small>
+</th>
 ```
 
 ---
