@@ -39,12 +39,29 @@ Your content will be REJECTED if it contains any of these:
 
 **Correct approach:** Cross-reference with one sentence: "As covered in [section]..."
 
-### Completeness Theater
-- 12 causes listed when 4-5 cover 90% of real-world cases = **REJECT**
-- Edge cases (reversing valves, control boards) equal to common issues = **REJECT**
-- Rare scenarios that require "call for replacement" as the only advice = **REJECT**
+### Completeness Rules (Intent-Dependent)
 
-**Correct approach:** Cover the 4-5 COMMON scenarios that match search intent. Link to detailed resource for rare cases.
+**Troubleshooting intent** ("won't work", "blowing cold"):
+- 4-5 causes max = ✓ CORRECT
+- Cover common scenarios only
+- Link to detailed resource for rare cases
+- Edge cases equal to common issues = **REJECT**
+
+**Identification intent** ("making noise", "what's wrong", "types of"):
+- Reader needs to FIND their specific issue among options
+- 6-10 items is acceptable when each is distinct
+- Use reference table for quick scanning
+- Shorter depth per item (50-80 words each)
+- Artificially limiting to 4-5 when more exist = **REJECT**
+
+**Decision intent** ("repair vs replace", "which is better"):
+- Cover all relevant factors for the decision
+- Don't artificially limit comparison points
+- Table format mandatory
+
+**The test:** Ask "Could the reader's actual issue be something I didn't cover?"
+- If yes (troubleshooting): Acceptable - cover common cases, link for rare
+- If yes (identification): NOT acceptable - they need to find their issue
 
 ### Stock Phrase Spam
 - "Contact a professional" appearing more than 2x = **REJECT**
@@ -186,17 +203,170 @@ Your article is too long because:
 
 ---
 
-## 6. HARD CONSTRAINTS
+### Identification Intent
+**Query patterns:** "making noise", "what's wrong with", "types of", "why is my [doing X]"
 
-### Content Limits
+**Key difference:** Reader doesn't know their specific problem yet. They need to FIND it among options.
+
+**Structure:**
+1. Quick triage statement
+2. Reference table (ALL common types with urgency column)
+3. DIY checks (if applicable)
+4. Professional causes (brief depth, 50-80 words each)
+5. Normal behaviors (brief list)
+6. Emergency indicators
+7. Service expectations + authority signals
+8. CTA
+
+**Word Budget:**
+| Section | Words |
+|---------|-------|
+| Intro | 75-100 |
+| Reference table | 150-250 (6-10 rows) |
+| DIY section | 100-150 |
+| Each professional cause | 50-80 (×4-6 = 200-480) |
+| Normal behaviors | 50-75 |
+| Emergency indicators | 75-100 |
+| Service + authority | 100-150 |
+| CTA | 50-75 |
+| **Total** | **800-1,350** |
+
+**Required elements:**
+- Urgency column in reference table
+- At least 2 authority signals (see Section 6.5)
+- Cost ranges for each professional cause
+
+**Professional mentions:** Max 3
+
+---
+
+## 6. SHORTCODES
+
+Use these shortcodes instead of hardcoding business information:
+
+| Shortcode | Usage |
+|-----------|-------|
+| `[business_name]` | Company name |
+| `[business_phone_link]` | Phone number with click-to-call |
+
+**Example:**
+```html
+<p>This guide from [business_name] covers DIY fixes and when to call for service.</p>
+<p>Call [business_phone_link] for same-day service.</p>
+```
+
+**Never hardcode:**
+- Company names
+- Phone numbers
+- Addresses (if applicable)
+
+---
+
+## 6.5 AUTHORITY SIGNALS (Required)
+
+Every article MUST include at least 2 of these credibility markers:
+
+| Signal Type | Example | Where to Place |
+|-------------|---------|----------------|
+| Credentials | "EPA-certified technicians" | CTA section |
+| Experience | "20+ years serving Dallas" | Opening or CTA |
+| Licensing | "Licensed (TACLA00152199C)" | CTA or footer |
+| Trust markers | "A+ BBB rating" | CTA section |
+| Regional expertise | Specific local insight (see below) | Within relevant cause |
+
+### Authority Signals vs. Promotional Fluff
+
+**Good (demonstrates expertise):**
+> Furnaces in North Texas often sit idle 8-9 months. Dust accumulates on burners during this time, making delayed ignition common when you first fire up the system in November.
+
+**Bad (generic promotion):**
+> We're the best HVAC company in the area with great customer service and competitive prices.
+
+### When Regional Expertise Adds Value
+
+Include regional content when it:
+- Explains WHY a problem is common locally (humidity, dust, temperature swings)
+- Changes WHAT the reader should do
+- Demonstrates you understand LOCAL conditions
+
+**Keep to:** 1-2 sentences integrated into a relevant cause section. NOT a standalone regional section.
+
+---
+
+## 6.6 EXPERIENCE DEMONSTRATION (Company Voice)
+
+Show expertise through company voice without fabricating personal claims.
+
+### Principles
+- Use **company voice** ("Our team has found...") not personal voice ("I've seen...")
+- Use **qualified language** ("Technicians commonly report...") for industry knowledge
+- Keep brief: 1-2 sentences maximum per article
+- Place naturally within cause explanations or CTA sections
+
+### Approved Patterns
+
+**Company voice:**
+- "In [X] years serving North Texas, our technicians have found that..."
+- "Across thousands of service calls, we've seen this pattern..."
+- "Our team commonly encounters this during [season/condition]..."
+
+**Qualified language:**
+- "HVAC professionals typically report that..."
+- "Industry experience shows..."
+- "This is among the most common [issue type] in [region]..."
+
+### Anti-Patterns (Never Use)
+
+| ❌ Don't Write | Why |
+|----------------|-----|
+| "In my 20 years..." | Personal claim by LLM |
+| "I've personally diagnosed..." | Fabricated experience |
+| "I remember one customer..." | Invented anecdote |
+
+### YMYL Restriction
+
+**For YMYL content** (health, medical, finance, legal, safety):
+- Do NOT use experience demonstrations or anecdotes
+- Stick to factual statements only
+- Defer to credentials (licenses, certifications) instead of experience narratives
+
+Experience claims in YMYL topics can wander into legal/medical ethics territory. Keep it factual.
+
+### Placement
+- Within a cause explanation (1 sentence showing pattern recognition)
+- In CTA section (tying company experience to service quality)
+- NOT in opening paragraphs (keep those factual/direct)
+
+---
+
+## 7. HARD CONSTRAINTS
+
+### Required Elements (every article)
+
+| Element | Requirement | Notes |
+|---------|-------------|-------|
+| Authority signals | 2 of 5 types minimum | See Section 6.5 |
+| Cost guidance | 3+ ranges | For troubleshooting/repair content |
+| Emergency indicators | Required section | For safety-related topics |
+| Shortcodes | All business info | Never hardcode names/phones |
+
+### Content Limits (Intent-Dependent)
+
+| Element | Troubleshooting | Identification | Comparison | Educational |
+|---------|-----------------|----------------|------------|-------------|
+| Causes/types | 4-5 max | 6-10 allowed | N/A | N/A |
+| Table rows | 5-6 | 6-10 | 4-6 | 3-5 |
+| Cost ranges | 4-6 | 6-10 | 2-4 | 0-2 |
+| Regional sentences | 1-2 | 1-2 | 0-1 | 0-1 |
+| Word budget | 750-1,100 | 800-1,350 | 600-875 | 550-800 |
+
+### Universal Limits (all intents)
 | Element | Maximum | Rationale |
 |---------|---------|-----------|
-| Causes/reasons list | 4-5 items | 4 cover 90% of cases |
-| Professional mentions | 2-3 total | More = sales pitch |
-| Regional content | 2-3 sentences | Only if changes answer |
-| Table rows | 5-8 | More = overwhelming |
+| Professional mentions | 3 total | More = sales pitch |
 | H2 section length | 300 words | Forces concision |
-| List items | 5-6 per list | Split longer lists |
+| List items | 6 per list | Split longer lists |
+| Paragraphs | 4 sentences max | Aids scanning |
 
 ### Banned Patterns
 **Never use:**
@@ -216,7 +386,7 @@ Your article is too long because:
 
 ---
 
-## 7. PRE-FLIGHT QUESTIONS
+## 8. PRE-FLIGHT QUESTIONS
 
 **Answer these BEFORE writing:**
 
@@ -229,15 +399,30 @@ Your article is too long because:
    - Choose between options?
    - Understand if something is normal?
 
-3. **What's the MINIMUM information needed for that action?**
+3. **What type of intent is this?** (determines structure + limits)
+   - **Troubleshooting:** They know the problem, need causes/fixes → 4-5 causes, 750-1,100 words
+   - **Identification:** They need to find their specific issue → 6-10 options, table-first, 800-1,350 words
+   - **Decision:** They're choosing between options → comparison table, 600-875 words
+   - **Educational:** They want to understand how/why → concept-focused, 550-800 words
+
+4. **What's the MINIMUM information needed for that action?**
    List only what's essential. This is your outline.
 
-4. **What would I cut if forced to halve the word count?**
+5. **What authority signals can I include?**
+   - License number?
+   - Years of experience?
+   - Certifications (EPA, manufacturer)?
+   - Trust markers (BBB rating)?
+   - Regional expertise insight?
+
+   **Must include at least 2.**
+
+6. **What would I cut if forced to halve the word count?**
    Whatever you listed - question whether it belongs at all.
 
 ---
 
-## 8. PRE-PUBLISH CHECKS
+## 9. PRE-PUBLISH CHECKS
 
 ### Automated Grep Checks
 Run these before submitting:
@@ -268,7 +453,7 @@ grep -c "—" content.md
 
 ---
 
-## 9. CONTENT TIGHTENING PROTOCOL
+## 10. CONTENT TIGHTENING PROTOCOL
 
 **Run this if you hit 1,500+ words:**
 
@@ -310,7 +495,7 @@ grep -c "—" content.md
 
 ---
 
-## 10. FORMAT DEFAULTS
+## 11. FORMAT DEFAULTS
 
 ### When to Use Tables (Tier 2 auto-loads)
 - Comparisons between 2+ options
@@ -345,14 +530,39 @@ grep -c "—" content.md
 
 ---
 
-## 11. EXAMPLES (Inline)
+## 12. EXAMPLES (Inline)
 
-### Good Opening (Answers Query Immediately)
+### Good Troubleshooting Opening (Answers Query Immediately)
 **Query:** "furnace blowing cold air"
 
 > If your furnace is blowing cold air, check three things first: thermostat settings, air filter, and pilot light (gas furnaces). These cover 80% of cold air issues and take less than 5 minutes to inspect.
 
 **Why it works:** Answers query in first sentence, gives actionable next steps, sets expectation.
+
+---
+
+### Good Identification Opening (Table-First for Scanning)
+**Query:** "furnace making strange noises"
+
+> Different furnace noises indicate different problems. This guide from [business_name] helps you identify what you're hearing and whether it needs immediate attention.
+>
+> | Noise | Likely Cause | Urgency |
+> |-------|--------------|---------|
+> | Loud bang | Delayed ignition | Turn off, call now |
+> | Grinding | Motor bearings failing | Call within 24 hrs |
+> | Squealing | Belt or bearing issue | Call within 1-2 days |
+> | Rattling | Loose panel or duct | Check panels (DIY) |
+> | Clicking (repeated) | Ignition attempts failing | Call for service |
+> | Humming (loud) | Transformer or capacitor | Call within 1-2 days |
+>
+> Identify your noise in the sections below for specific causes, costs, and what to do.
+
+**Why it works:**
+- Triage table FIRST (reader finds their issue in seconds)
+- Urgency column answers "is this serious?" immediately
+- Covers 6 common noises (not artificially limited to 4)
+- Each row is a distinct, identifiable option
+- Intro + table = ~175 words, then brief depth per cause
 
 ---
 
