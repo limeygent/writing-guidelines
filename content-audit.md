@@ -21,11 +21,11 @@ Writer submits content
 │  Calculate score    │
 └─────────────────────┘
         │
-        ├── Score ≥80 ──→ ✅ PUBLISH
+        ├── Score ≥88 ──→ ✅ PUBLISH
         │
-        ├── Score 60-79 ─→ ⚠️ MINOR FIXES (return with flag list)
+        ├── Score 66-87 ─→ ⚠️ MINOR FIXES (return with flag list)
         │
-        └── Score <60 ───→ ❌ REWRITE (run tightening protocol)
+        └── Score <66 ───→ ❌ REWRITE (run tightening protocol)
 ```
 
 ---
@@ -173,6 +173,27 @@ grep -ic "let's dive in" content.md
 
 ---
 
+## 6. Helpful Content Check (10 points)
+
+Quick self-assessment before publishing:
+
+| Question | Yes | No |
+|----------|:---:|:---:|
+| Does the opening directly answer the search query? | | |
+| Would a reader bookmark or share this? | | |
+| Does it demonstrate expertise beyond summarizing others? | | |
+| Would the reader achieve their goal without searching again? | | |
+| Is this written for people, not search engines? | | |
+
+**Scoring:**
+- All "Yes": 10 points
+- 1-2 "No": 5 points
+- 3+ "No": 0 points (content needs review)
+
+**If scoring 0:** Review against core-rules.md Section 3 warning signs.
+
+---
+
 ## Score Calculation
 
 | Category | Points | Your Score |
@@ -182,17 +203,18 @@ grep -ic "let's dive in" content.md
 | Structure | /20 | ___ |
 | Banned patterns | /15 | ___ |
 | Scope | /15 | ___ |
-| **TOTAL** | **/100** | **___** |
+| Helpful content | /10 | ___ |
+| **TOTAL** | **/110** | **___** |
 
 ---
 
 ## Results & Actions
 
-### Score ≥80: PUBLISH ✅
+### Score ≥88: PUBLISH ✅
 
 Content passes quality gate. Proceed to formatting and publishing.
 
-### Score 60-79: MINOR FIXES ⚠️
+### Score 66-87: MINOR FIXES ⚠️
 
 Return to writer with specific violation list:
 - "Word count is 1,850 - identify 300 words to cut"
@@ -201,7 +223,7 @@ Return to writer with specific violation list:
 
 Writer fixes flagged issues only, re-submits for quick re-check.
 
-### Score <60: REWRITE ❌
+### Score <66: REWRITE ❌
 
 Content has structural problems. Return to writer with:
 1. This audit report
@@ -250,7 +272,8 @@ echo "don't worry:" && grep -ic "don't worry" content.md
 - Structure: ___/20
 - Banned patterns: ___/15
 - Scope: ___/15
-- **TOTAL: ___/100**
+- Helpful content: ___/10
+- **TOTAL: ___/110**
 
 ### Violations Found
 1. [Specific violation]

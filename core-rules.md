@@ -78,6 +78,17 @@ Your content will be REJECTED if it contains any of these:
 
 **Correct approach:** Stay ruthlessly on-topic. Link to separate pages for tangential content.
 
+### Search-Engine-First Warning Signs
+Content will be FLAGGED if it shows these patterns:
+
+- Written to hit a word count rather than answer the query
+- Covers topics you have no real expertise in just to capture traffic
+- Summarizes what others say without adding unique value
+- Promises answers to questions that have no real answer
+- Leaves readers needing to search again for better information
+
+**The test:** Would this content exist if search engines didn't? If no, reconsider.
+
 ---
 
 ## 4. WORD COUNT CHECKPOINTS
