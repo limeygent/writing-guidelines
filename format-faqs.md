@@ -138,22 +138,45 @@ These are related but distinct from the core troubleshooting content.
 </script>
 ```
 
-### HTML Structure
+### HTML Structure (Bootstrap 5 Accordion)
+
 ```html
 <section class="faq">
   <h2>Frequently Asked Questions</h2>
 
-  <div class="faq-item">
-    <h3>Question text here?</h3>
-    <p>Answer text here. Keep it to 2-3 sentences.</p>
-  </div>
+  <details class="faq-item border rounded mb-3 p-3">
+    <summary id="faq-question-1" class="mb-2" aria-controls="faq-answer-1">
+      Question text here? (Natural language, how the searcher would ask)
+    </summary>
+    <div id="faq-answer-1" class="faq-body" aria-labelledby="faq-question-1">
+      <h3>Question text here?</h3>
+      Answer text here. Keep to 2-3 sentences. Be direct - answer in the first sentence,
+      then add brief context or next steps if needed. Make answers self-contained so
+      readers don't need to read the full article.
+    </div>
+  </details>
 
-  <div class="faq-item">
-    <h3>Second question?</h3>
-    <p>Second answer here.</p>
-  </div>
+  <details class="faq-item border rounded mb-3 p-3">
+    <summary id="faq-question-2" class="mb-2" aria-controls="faq-answer-2">
+      Second question here?
+    </summary>
+    <div id="faq-answer-2" class="faq-body" aria-labelledby="faq-question-2">
+      <h3>Second question here?</h3>
+      Second answer here. Include local/specific context when relevant (e.g., regional
+      conditions, specific equipment, local regulations). This differentiates your
+      content from generic answers.
+    </div>
+  </details>
+
 </section>
 ```
+
+**Required elements:**
+- `<details>` wrapper with `faq-item border rounded mb-3 p-3` classes
+- `<summary>` with unique `id` and `aria-controls` matching the answer div
+- `<div>` answer with matching `id` and `aria-labelledby` for accessibility
+- `<h3>` repeating the question inside the answer div
+- Increment IDs for each FAQ (faq-question-1, faq-question-2, etc.)
 
 ---
 
