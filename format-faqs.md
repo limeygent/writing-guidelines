@@ -118,6 +118,8 @@ These are related but distinct from the core troubleshooting content.
 
 ## Schema Markup
 
+FAQ schema can be a **separate script block** from other page schema (Article, LocalBusiness, etc.). Google parses multiple JSON-LD blocks on a page and associates them with the same URL.
+
 ### Basic FAQ Schema
 ```html
 <script type="application/ld+json">
