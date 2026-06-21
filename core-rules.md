@@ -1,666 +1,513 @@
-# Core Writing Rules (Tier 1)
+# Writing Constitution: Core Rules (Tier 1)
 
-**Load:** ALWAYS - every content generation task
-**Purpose:** Non-negotiable rules that prevent bloated, unfocused content
+**Load:** ALWAYS, on every content-generation task (page, post, service page, landing page, any copy).
+**Purpose:** The single global source of truth. Niche-agnostic. A writer who reads this file plus the
+relevant per-client overlay produces copy that passes the post-write audit (`content-audit.md`) on the
+first try.
 
----
+**No em dashes anywhere.** (—) is the #1 lexical AI tell. Use commas, colons, periods, or parentheses.
+Hyphens in compound modifiers (long-term, body-composition) are fine.
 
-## 1. PRIME DIRECTIVE
-
-Answer the search query. ONLY the search query. Nothing else exists.
-
-Every word must serve the reader's goal. If content doesn't help them solve their problem or make their decision, delete it.
-
----
-
-## 2. PRIORITY CASCADE
-
-Follow this hierarchy. Stop when the reader has what they need.
-
-1. **Answer the query's CORE question** (mandatory)
-2. **Enable immediate action** - DIY fix or call pro (mandatory)
-3. **Prevent safety hazards** - gas leaks, electrical, CO (if applicable)
-4. **[STOP HERE for most content]**
-5. Add local context ONLY if it changes the answer
-6. Add depth ONLY if intent is research-focused
-
-If you're writing content for priority 5-6, ask: "Does this change what the reader should DO?" If no, cut it.
+**This file is global only.** Anything client-specific (brand voice notes, compliance posture, locked
+facts like phone/address/license numbers, niche word-bans, claimable differentiators) lives in a thin
+per-client overlay in `overlays/`. Core rules state the PRINCIPLE; the overlay supplies the literal.
 
 ---
 
-## 3. INSTANT DISQUALIFICATION PATTERNS
+## 0. ORDER OF OPERATIONS (do not skip steps)
 
-Your content will be REJECTED if it contains any of these:
+This is positive generation procedure, not just a list of bans. Follow the sequence.
 
-### Same Information Twice
-- Table + prose explaining table contents = **REJECT**
-- Concept in overview AND repeated in later section = **REJECT**
-- Same troubleshooting step in multiple symptom discussions = **REJECT**
+1. **Triangulate the intent** (Section 1). Extract observable / inferred / hidden intent for the page.
+2. **Lock ONE search intent.** State it as a real query. One page, one primary intent (one secondary at
+   most). Multiple intents = split into multiple pages.
+3. **Know your hub-and-spoke role** (Section 2) and stay in lane.
+4. **Produce the scope ledger** (Section 3) BEFORE any prose. Tag every planned section WRITE / ROUTE /
+   CUT. Run each through the fan-out gate. **The ledger overrides any brief or audit.**
+5. **Outline query-matchable H2s** from WRITE-tagged sections only, ordered as the searcher's journey
+   (Section 6 blueprints).
+6. **Open by answering the intent in sentence 1** (Section 4): self-contained, citable, entity-anchored.
+7. **Write only on-intent sections.** Benefits before mechanism. Max density and E-E-A-T (Section 5).
+8. **Apply the voice** (Section 7), then **strip AI tells** (Section 8), then **dedupe** (Section 9, DRY).
+9. **Format with variety** (Section 10): mix prose, lists, tables, FAQ. Never every section a bullet dump.
+10. **Output paste-ready HTML** (Section 11) with placeholders for unverified facts (Section 5.4).
+11. **Run the pre-publish checklist** (Section 14), then `content-audit.md`.
 
-**Correct approach:** Cross-reference with one sentence: "As covered in [section]..."
-
-### Completeness Rules (Intent-Dependent)
-
-**Troubleshooting intent** ("won't work", "blowing cold"):
-- 4-5 causes max = ✓ CORRECT
-- Cover common scenarios only
-- Link to detailed resource for rare cases
-- Edge cases equal to common issues = **REJECT**
-
-**Identification intent** ("making noise", "what's wrong", "types of"):
-- Reader needs to FIND their specific issue among options
-- 6-10 items is acceptable when each is distinct
-- Use reference table for quick scanning
-- Shorter depth per item (50-80 words each)
-- Artificially limiting to 4-5 when more exist = **REJECT**
-
-**Decision intent** ("repair vs replace", "which is better"):
-- Cover all relevant factors for the decision
-- Don't artificially limit comparison points
-- Table format mandatory
-
-**The test:** Ask "Could the reader's actual issue be something I didn't cover?"
-- If yes (troubleshooting): Acceptable - cover common cases, link for rare
-- If yes (identification): NOT acceptable - they need to find their issue
-
-### Stock Phrase Spam
-- "Contact a professional" appearing more than 2x = **REJECT**
-- "Safety first" or "important to note" more than 1x = **REJECT**
-- Any phrase appearing 3+ times unchanged = **REJECT**
-
-**Correct approach:** Vary language, convert to links, or consolidate to single "When to Call" section.
-
-### Scope Expansion
-- Financing options in troubleshooting article = **REJECT**
-- Service call expectations (100+ words) in symptom article = **REJECT**
-- Regional content unless it changes the answer = **REJECT**
-- Preventive maintenance in repair-focused article = **REJECT**
-
-**Correct approach:** Stay ruthlessly on-topic. Link to separate pages for tangential content.
-
-### Search-Engine-First Warning Signs
-Content will be FLAGGED if it shows these patterns:
-
-- Written to hit a word count rather than answer the query
-- Covers topics you have no real expertise in just to capture traffic
-- Summarizes what others say without adding unique value
-- Promises answers to questions that have no real answer
-- Leaves readers needing to search again for better information
-
-**The test:** Would this content exist if search engines didn't? If no, reconsider.
+**Build process (when producing many pages):** pilot the HARDEST page first, get it approved, then batch
+using the approved page as the gold-standard example. Pair a builder with a separate validator/audit agent
+plus external fact-check. Bar = zero critical findings; cap fix iterations at ~2 (more than that means the
+spec is wrong, not the draft). Rebuild from scratch; never iterate an old skeleton. *Why: from-scratch beats
+patching a flawed structure, and a fresh validator catches what the writer is blind to.*
 
 ---
 
-## 4. WORD COUNT CHECKPOINTS
+## 1. INTENT CONTRACT (triangulate before you redesign)
 
-### At 500 Words - Self-Check
-- [ ] Have I directly answered the search query's main question?
-- [ ] Is every paragraph ESSENTIAL to that answer?
-- [ ] Have I repeated any concept yet? (If yes, consolidate now)
+Before writing, extract three layers. Use them as a contract every section must serve.
 
-### At 1,000 Words - Review Gate
-- [ ] Grep for key phrases - each appears in 1 location only?
-- [ ] Does every H2 section answer the original query?
-- [ ] Could I delete any section without losing essential info? (If yes, DELETE IT)
+| Layer | What it is | What it sets |
+|---|---|---|
+| **Observable** | The 3-7 word query a user types | Literal H1 + title target |
+| **Inferred** | Intent type: informational / transactional / commercial-investigation / navigational | Content type + primary objective verb |
+| **Hidden driver** | The emotion underneath: fear / hope / frustration / urgency | The persuasion arc and where to lean |
 
-### At 1,500 Words - MANDATORY STOP
-
-**Do not write another word until you complete these steps:**
-
-1. Open your first 500 words
-2. Open your last 500 words
-3. Find duplicate concepts (there ARE some)
-4. Consolidate or delete before continuing
-
-### At 2,000+ Words - CONTENT FAILED
-
-Your article is too long because:
-- You explained something twice
-- You included tangential information
-- You listed exhaustive causes instead of common ones
-
-**Required action:** Find duplicates and merge. Do NOT truncate the ending - fix the source of bloat.
+- Write the **Primary Objective** as one sentence: *"This page exists to [verb] for [reader] who [state]."*
+  Every section must serve it. *Why: a stated objective is the test that kills drift sections.*
+- **Target reader = the reader's intent, not the business's.** Keep sections that anchor the intent;
+  cut, fold, or repurpose sections that drift from it.
+- **Mode:** single intent, or primary + ONE secondary. If a page has author-intent only (no real query),
+  invent the reader it should serve. Low/medium confidence = a shakier anchor; flag it.
 
 ---
 
-## 5. INTENT TEMPLATES & WORD BUDGETS
+## 2. HUB-AND-SPOKE DISCIPLINE (stay in your lane)
 
-### Troubleshooting Intent
-**Query patterns:** "won't work", "not working", "blowing cold", "won't turn on"
+Most content sits in a cluster. Know the page's role and do not compete with sibling pages. *Why: when two
+pages of one site chase the same query, the site competes with itself (cross-page cannibalization).*
 
-**Structure:**
-1. Problem acknowledgment + quick answer
-2. Causes (4-5 max)
-3. DIY fixes
-4. When to call for service
-
-**Word Budget:**
-| Section | Words |
-|---------|-------|
-| Intro (answer query) | 100-150 |
-| Each cause | 80-120 (max 5 = 400-600) |
-| DIY section | 150-200 |
-| When to call | 100-150 |
-| **Total** | **750-1,100** |
-
-**Professional mentions:** Max 2
+- **Hub** = the commercial/transactional page. Owns: program/service options, tiers, **pricing/cost**,
+  what's included, **how to start / first visit / onboarding**, insurance, booking, "[service] near me."
+- **Spokes** = per-product/treatment/sub-service detail pages. Own: that item's mechanism, options,
+  eligibility, and its own cost.
+- **Supporting blog/educational pages** = the why/how/what that makes the case and funnels up. They
+  **link UP** to hub/spokes and never host pricing tables, tier comparisons, onboarding steps, insurance,
+  or per-item mechanism. Route those with one sentence + an internal link, never a duplicated section.
+- **Service/landing pages use ZERO city names** when separate location pages exist. *Why: city mentions on
+  the service page cannibalize the location pages built to rank for them.* (Location pages are the exception.)
+- When a named product/sub-service comes up on a supporting page, name it and link to its spoke; do not
+  re-explain its mechanism.
 
 ---
 
-### Comparison Intent
-**Query patterns:** "vs", "or", "compared to", "difference between"
+## 3. SCOPE LEDGER + FAN-OUT GATE (the gate that stops scope creep)
 
-**Structure:**
-1. Quick answer (recommendation)
-2. Comparison table
-3. Context for decision
-4. Final recommendation
+Produce this BEFORE writing any prose. List every planned section; tag each. **Write only WRITE-tagged ones.**
 
-**Word Budget:**
-| Section | Words |
-|---------|-------|
-| Quick answer | 100-150 |
-| Table intro | 50-75 |
-| Table | 150-200 |
-| Context | 200-300 |
-| Recommendation | 100-150 |
-| **Total** | **600-875** |
+| Planned section | Single sub-query it answers | Owner (hub / spoke / this page) | Verdict |
+|---|---|---|---|
+| e.g. "How much does it cost" | pricing | Hub | ROUTE (1 line + link) |
+| e.g. "Why fad diets fail" | comparison vs dieting | This page | WRITE |
+| e.g. "What happens at the first visit" | onboarding | Hub | CUT / ROUTE |
 
-**Professional mentions:** Max 1 (in consultation CTA)
+- **WRITE** only sections this page owns. **ROUTE** a hub/spoke-owned sub-query with one sentence + a link
+  (never a full section). **CUT** anything that fits this page's intent nowhere.
+- If you cannot name the single sub-query a section answers, it is drift. Cut it.
+- **The ledger overrides the brief.** A content brief or upstream audit can be wrong about scope (it often
+  adds cost / first-visit / insurance to pages that should not own them). Run every brief-recommended
+  section through this ledger anyway.
 
----
+**Fan-out gate (run on every candidate sub-query; all three filters must pass).** Build a fan-out tree of 8-14
+sub-queries (4 for emergency intent) before drafting; confirm coverage after.
 
-### Maintenance Intent
-**Query patterns:** "how often", "should I", "when to", "how to maintain"
+1. **Intent fit.** Is the sub-query an expansion of THIS page's exact intent (same underlying need)? Cost /
+   onboarding / insurance are the fan-out of the *buying* intent (hub), not the *understand-and-compare*
+   intent (educational). Different need = not this page's.
+2. **Upstream DRY check (verify, do not assume).** Actually open the hub/spoke pages and check whether the
+   sub-query is already answered there.
+   - Already covered upstream -> ROUTE (one sentence + link).
+   - Not covered anywhere, fits this page's intent -> WRITE it. This is a genuine gap; capture it.
+   - Not covered anywhere, fits a sibling better -> note as a gap for that page; do not force it here.
+3. **Cannibalization check (supporting/blog pages especially).** Even if a sub-query passes intent fit and is
+   not yet covered upstream, ask whether the sibling commercial page is built to RANK for it. If yes, the blog
+   answers it briefly (2-3 sentences) and links up; it does NOT write the deep, fully optimized version.
+   *Why: a supporting page that out-optimizes the money page's own fan-out competes with the page it exists to
+   feed.* The deep, click-winning treatment belongs on the page that should win the click. Duplication splits
+   signals; out-optimizing actively demotes the money page.
 
-**Structure:**
-1. Quick answer (frequency/yes-no)
-2. Steps or checklist
-3. Consequences of skipping
-4. Professional vs DIY guidance
-
-**Word Budget:**
-| Section | Words |
-|---------|-------|
-| Quick answer | 80-100 |
-| Steps/checklist | 300-400 |
-| Consequences | 100-150 |
-| Pro vs DIY | 100-150 |
-| **Total** | **580-800** |
-
-**Professional mentions:** Max 2
+Coverage rule: every high-value sub-query is answered in exactly ONE canonical chunk. Decision-critical
+sub-queries get a body section, not just an FAQ.
 
 ---
 
-### Educational Intent
-**Query patterns:** "how does", "what is", "why does", "explain"
+## 4. THE OPENER + ZONE 1 (answer the intent immediately)
 
-**Structure:**
-1. Simple answer (ELI5)
-2. How it works
-3. Why it matters to homeowner
-4. When to care about this
+**Zone 1** = the first 20% of the body, capped at min(0.20 × chars, 2000 chars). It carries the answer.
 
-**Word Budget:**
-| Section | Words |
-|---------|-------|
-| Simple answer | 100-150 |
-| How it works | 200-300 |
-| Why it matters | 150-200 |
-| When to care | 100-150 |
-| **Total** | **550-800** |
-
-**Professional mentions:** Max 1
+- **Sentence 1 is a self-contained, citable answer** to the primary query: an LLM can lift it out of
+  context and it still stands. Name the entity in it. *Why: the extractable answer is what gets cited.*
+- For service/landing pages, sentence 1 follows: *"<brand> is a <niche> that offers <solution> for
+  <user problem>."* Then anchor to the provider (named practitioner/credential where relevant + geo).
+- Within Zone 1, hit the **4 differentiation signals** within ~3 consecutive sentences: **What** it is,
+  **Who** provides it, **What job** it does, **What constraint** applies (eligibility / condition / scope).
+- Mirror every decision-critical fact into Zone 1. **No decision-critical fact may be trapped only in a CTA
+  block** (e.g. phone, service area, hours for an emergency page belong in Zone 1 prose too).
+- **First body section after the opener = benefits before mechanism.** Lead with what the reader gets.
+- Do NOT open with a generic hook ("losing weight is hard," "in today's world"), and do NOT include a
+  "this page covers X, Y, Z" roadmap. *Why: zero information gain, and the roadmap goes stale when a section
+  is cut.*
 
 ---
 
-### Identification Intent
-**Query patterns:** "making noise", "what's wrong with", "types of", "why is my [doing X]"
+## 5. DENSITY, E-E-A-T, AND CLAIM HONESTY (what makes it rank and get cited)
 
-**Key difference:** Reader doesn't know their specific problem yet. They need to FIND it among options.
+Goal: content an LLM categorizes as a high-signal, localized authority and can extract clean atomic facts
+from. Generic = discarded.
 
-**Structure:**
-1. Quick triage statement
-2. Reference table (ALL common types with urgency column)
-3. DIY checks (if applicable)
-4. Professional causes (brief depth, 50-80 words each)
-5. Normal behaviors (brief list)
-6. Emergency indicators
-7. Service expectations + authority signals
-8. CTA
+### 5.1 Anchorable statements
 
-**Word Budget:**
-| Section | Words |
-|---------|-------|
-| Intro | 75-100 |
-| Reference table | 150-250 (6-10 rows) |
-| DIY section | 100-150 |
-| Each professional cause | 50-80 (×4-6 = 200-480) |
-| Normal behaviors | 50-75 |
-| Emergency indicators | 75-100 |
-| Service + authority | 100-150 |
-| CTA | 50-75 |
-| **Total** | **800-1,350** |
+Distribute atomic facts across the WHOLE page, not just the FAQ. Every section carries at least one atomic
+fact mappable as **entity -> attribute -> value**. Every anchorable statement passes four binary tests:
 
-**Required elements:**
-- Urgency column in reference table
-- At least 2 authority signals (see Section 6.5)
-- Cost ranges for each professional cause
+1. **Names the entity** (the specific brand/product/provider, not "the service").
+2. **Makes a specific claim** (a number, named test, named technology, named insurer, stated condition).
+3. **Is self-contained** (pronouns resolve; no "as mentioned above"; survives extraction as a chunk).
+4. **Passes the substitution test** (Section 5.3).
 
-**Professional mentions:** Max 3
+- Every sentence carries subject-verb-object plus a NEW fact. The first sentence of each section has ≥2 of:
+  {named entity not already in the heading, specific data point, stated condition}.
+- **Categorical precision:** "single-tooth titanium implant," not "implant." Promote the specific to the
+  main clause; do not bury it in a subordinate phrase.
+- Do not oversimplify into a bare data point that misleads ("$49/month" with no statement of what it
+  includes). *Why: a bare number without its qualifier is a false claim.*
+- No unresolved coreference. No elegant variation (do not cycle synonyms for the same entity to sound varied).
 
----
+### 5.2 Chunk isolation for RAG (critical)
 
-## 6. SHORTCODES
+Every bullet lead-in and every short, context-dependent paragraph must stand alone when extracted as a
+~500-token chunk: name the subject, the specific topic, and where/who. *Why: retrieval chunks the page;
+an orphaned lead-in becomes uncitable.*
 
-Use these shortcodes instead of hardcoding business information:
+- Good: "Common signs of gum disease to watch for:"
+- Bad: "Common signs to watch for:"
 
-| Shortcode | Usage |
-|-----------|-------|
-| `[business_name]` | Company name |
-| `[business_phone_link]` | Phone number with click-to-call |
+### 5.3 Differentiation (the substitution test)
 
-**Example:**
-```html
-<p>This guide from [business_name] covers DIY fixes and when to call for service.</p>
-<p>Call [business_phone_link] for same-day service.</p>
-```
+Mentally swap the brand for a competitor. If the sentence still reads true, it is commodity: rewrite it with
+a specific only this provider can claim. Run it section by section, not on one line.
 
-**Never hardcode:**
-- Company names
-- Phone numbers
-- Addresses (if applicable)
+- Keep name-swappable content under 40% of body words.
+- Unique-data density: ≥3 provider-specific sentences per 1000 body words.
+- Include ≥1 unique angle that 5+ competitors would not state, and ≥3 externally verifiable trust signals.
 
----
+### 5.4 Claim honesty (never fabricate)
 
-## 6.5 AUTHORITY SIGNALS (Required)
+- **Target vs measured language.** Placeholder or aspirational numbers use forward-looking language ("we
+  aim to," "we typically"), never measured-statistic language ("the average was X in 2024"). *Why: measured
+  phrasing falsely asserts an audit trail.*
+- **Credential currency in the same sentence.** State that a licence/registration/insurance/warranty is
+  active / in force / currently registered INSIDE the sentence that mentions it. *Why: an LLM extracting the
+  chunk will not infer "still valid" from context.*
+- **Quote statutes/regulations verbatim;** never paraphrase a legal requirement.
+- **Verify before publish** any number, "first/only" claim, success rate, or comparison.
+- **Never invent facts.** Anything not verifiable from the client or a live page becomes a visible
+  placeholder (e.g. `<mark class="verify">[VERIFY: ...]</mark>` or `[NEEDS FROM CLIENT: ...]`) so it cannot
+  ship by accident. List every placeholder in an HTML comment at the bottom of the file. Never fabricate
+  credentials, registration numbers, pricing, success rates, testimonials, addresses, or phone numbers.
 
-Every article MUST include at least 2 of these credibility markers:
+### 5.5 Trust signals
 
-| Signal Type | Example | Where to Place |
-|-------------|---------|----------------|
-| Credentials | "EPA-certified technicians" | CTA section |
-| Experience | "20+ years serving Dallas" | Opening or CTA |
-| Licensing | "Licensed (TACLA00152199C)" | CTA or footer |
-| Trust markers | "A+ BBB rating" | CTA section |
-| Regional expertise | Specific local insight (see below) | Within relevant cause |
-
-### Authority Signals vs. Promotional Fluff
-
-**Good (demonstrates expertise):**
-> Furnaces in North Texas often sit idle 8-9 months. Dust accumulates on burners during this time, making delayed ignition common when you first fire up the system in November.
-
-**Bad (generic promotion):**
-> We're the best HVAC company in the area with great customer service and competitive prices.
-
-### When Regional Expertise Adds Value
-
-Include regional content when it:
-- Explains WHY a problem is common locally (humidity, dust, temperature swings)
-- Changes WHAT the reader should do
-- Demonstrates you understand LOCAL conditions
-
-**Keep to:** 1-2 sentences integrated into a relevant cause section. NOT a standalone regional section.
+Named author with registration/licence number, credentials, named external sources (cited, not
+paraphrased), years in operation, named technology, named insurers/partners, honest failure/risk rates,
+named address. The specific differentiators a given client may claim live in that client's overlay.
 
 ---
 
-## 6.6 EXPERIENCE DEMONSTRATION (Company Voice)
+## 6. STRUCTURE: ORDER SECTIONS AS THE SEARCHER'S JOURNEY
 
-Show expertise through company voice without fabricating personal claims.
+One fan-out sub-query = one section = one persuasion job. Order serves the human arc, not the business's.
+Mark CTA placements explicitly. Pick the blueprint by page type:
 
-### Principles
-- Use **company voice** ("Our team has found...") not personal voice ("I've seen...")
-- Use **qualified language** ("Technicians commonly report...") for industry knowledge
-- Keep brief: 1-2 sentences maximum per article
-- Place naturally within cause explanations or CTA sections
+| Page type | Section order |
+|---|---|
+| **Service** | Zone 1 answer + credibility -> mechanism / does-it-work -> options + pricing (CTA) -> process / de-risk -> proof (CTA) -> eligibility + objections (FAQ) -> location (final CTA) |
+| **Emergency** | phone + availability + service area in Zone 1 (the CTA IS the answer) -> response time -> pricing basis -> trust -> FAQ. Credibility and education come AFTER the immediate answer |
+| **Comparison** | Zone 1 verdict + table -> per-option detail -> decision criteria ("choose X if") -> proof -> FAQ -> CTA |
+| **Blog / educational** | Zone 1 definition -> mechanism -> implications -> what to do (soft CTA) -> FAQ |
+| **Location** | am-I-in-the-right-place -> what's offered -> why this provider -> next step |
 
-### Approved Patterns
+**Service-page archetypes & conditional blocks.** Emergency (urgency, act now) and general/planning
+(research) need different block order: phone-only CTA for urgent, form for planning, hybrid for general.
+Page modifiers (high-stakes / regulated / high-ticket / recurring) switch on conditional blocks. **Prefer
+suppressing a block over filling it with generic content: missing beats generic.**
 
-**Company voice:**
-- "In [X] years serving North Texas, our technicians have found that..."
-- "Across thousands of service calls, we've seen this pattern..."
-- "Our team commonly encounters this during [season/condition]..."
+**MECLABS conversion weighting** (high-motivation service visitors): C = 4m + 3v + 2(i − f) − 2a. Motivation
+(4×) > Value (3×) > Anxiety / Friction / Incentive (2×). On a high-motivation page, do not sell the problem
+the reader already has: pivot to value clarity, anxiety reduction, friction reduction, urgency. Minimize any
+form to 2-3 fields. Put 2+ local references per page. Quantify-or-kill every claim (run a falsifiability
+test on every sentence). Progressive CTAs: never repeat the same CTA verbatim.
 
-**Qualified language:**
-- "HVAC professionals typically report that..."
-- "Industry experience shows..."
-- "This is among the most common [issue type] in [region]..."
+**Trust hierarchy for local pages** (weak to strong): star ratings < licence # + named insurance <
+hyperlocal data < code versions / ordinance numbers. Reach for the strongest signal you can verify.
 
-### Anti-Patterns (Never Use)
+### Heading hygiene
 
-| ❌ Don't Write | Why |
-|----------------|-----|
-| "In my 20 years..." | Personal claim by LLM |
-| "I've personally diagnosed..." | Fabricated experience |
-| "I remember one customer..." | Invented anecdote |
+- Exactly **one H1**: primary query + qualifier, entity-scoped.
+- H2s are **query-matchable** (read like a real search), **sentence case**, **no colons**.
+- No category-label, filler-framing, or clever/copywriter headings: ban "Understanding the Role of," "A
+  Comprehensive Guide to," gerund + abstract-noun ("Restoring Confidence"), rhetorical/CTA headings, and
+  "Challenges and Future Prospects." Use the reader's actual question.
+- Semantic hierarchy, no skipped levels, no fragmented headers.
 
-### YMYL Restriction
+### Section integrity
 
-**For YMYL content** (health, medical, finance, legal, safety):
-- Do NOT use experience demonstrations or anecdotes
-- Stick to factual statements only
-- Defer to credentials (licenses, certifications) instead of experience narratives
-
-Experience claims in YMYL topics can wander into legal/medical ethics territory. Keep it factual.
-
-### Placement
-- Within a cause explanation (1 sentence showing pattern recognition)
-- In CTA section (tying company experience to service quality)
-- NOT in opening paragraphs (keep those factual/direct)
-
----
-
-## 7. HARD CONSTRAINTS
-
-### Required Elements (every article)
-
-| Element | Requirement | Notes |
-|---------|-------------|-------|
-| Authority signals | 2 of 5 types minimum | See Section 6.5 |
-| Cost guidance | 3+ ranges | For troubleshooting/repair content |
-| Emergency indicators | Required section | For safety-related topics |
-| Shortcodes | All business info | Never hardcode names/phones |
-
-### Content Limits (Intent-Dependent)
-
-| Element | Troubleshooting | Identification | Comparison | Educational |
-|---------|-----------------|----------------|------------|-------------|
-| Causes/types | 4-5 max | 6-10 allowed | N/A | N/A |
-| Table rows | 5-6 | 6-10 | 4-6 | 3-5 |
-| Cost ranges | 4-6 | 6-10 | 2-4 | 0-2 |
-| Regional sentences | 1-2 | 1-2 | 0-1 | 0-1 |
-| Word budget | 750-1,100 | 800-1,350 | 600-875 | 550-800 |
-
-### Universal Limits (all intents)
-| Element | Maximum | Rationale |
-|---------|---------|-----------|
-| Professional mentions | 3 total | More = sales pitch |
-| H2 section length | 300 words | Forces concision |
-| List items | 6 per list | Split longer lists |
-| Paragraphs | 4 sentences max | Aids scanning |
-
-### Banned Patterns
-**Never use:**
-- Em-dashes (—) - use commas, parentheses, or new sentences
-- "You're not alone" / "Don't worry" - empathy fluff
-- "It's important to note" / "As you may know" - filler
-- "In addition to" / "Another thing to consider" - scope creep signals
-- Vague claims any competitor could copy-paste
-
-### Required Voice
-- **Contractions:** Required (you're, isn't, won't, can't)
-- **Voice:** Active 80%+ of sentences
-- **Address:** Direct "you" and "your"
-- **Numbers:** Numerals always (3-4 years, not "three to four")
-- **Lists:** Oxford commas required
-- **Tone:** Helpful expert, not salesy or clinical
+- Every section belongs to the fan-out set. One section answers one question. Re-anchor the entity (no "as
+  mentioned above").
+- An in-set section over **250 words AND over 40% of body** must be split. An out-of-set section over 250
+  words becomes its own page.
 
 ---
 
-## 8. PRE-FLIGHT QUESTIONS
+## 7. VOICE
 
-**Answer these BEFORE writing:**
+One consistent voice for the whole page: the business talking to the customer (we / our / your). Never the
+LLM talking to the operator. No authorial "I" ("I want you to know," "I'd be cautious"). FAQ questions in
+the searcher's voice ("Can I combine...") are fine: that is the user speaking.
 
-1. **What is the exact search query?**
-   Write it down. Every section must serve this query.
+- Conversational, not academic. Contractions fine. Warm, plain, confident. Never hypey, slangy, or salesy.
+- **Frontload the takeaway:** the H2 and the first sentence are the answer.
+- **Vary sentence AND paragraph length.** Three back-to-back 13-15 word sentences is the most reliable AI
+  tell. Mix one-line punches with longer explanatory sentences. Add soul: have a specific opinion, be concrete.
+- Brief empathy is allowed; filler empathy is not (Section 8).
 
-2. **What action does this enable for the reader?**
-   - Fix something themselves?
-   - Decide to call a pro?
-   - Choose between options?
-   - Understand if something is normal?
+**Audience registers** (apply the one that fits):
 
-3. **What type of intent is this?** (determines structure + limits)
-   - **Troubleshooting:** They know the problem, need causes/fixes → 4-5 causes, 750-1,100 words
-   - **Identification:** They need to find their specific issue → 6-10 options, table-first, 800-1,350 words
-   - **Decision:** They're choosing between options → comparison table, 600-875 words
-   - **Educational:** They want to understand how/why → concept-focused, 550-800 words
+- **Non-technical client UI / dashboard copy:** lead with the scenario, not a definition. No
+  troubleshooting. Reference only what the user can already see. Cut analyst-speak ("fires when," "KPI,"
+  "ratio"). Trim every pass.
+- **Distressed-consumer copy:** direct second person, short paragraphs, question-form H2s, explain any
+  jargon in parentheses.
+- **High-motivation service visitor:** they already have the problem; do not sell it. Pivot to clarity,
+  anxiety reduction, friction reduction, urgency.
 
-4. **What's the MINIMUM information needed for that action?**
-   List only what's essential. This is your outline.
+**Business vs licensed-individual attribution.** The *business* provides / offers / accepts / is a preferred
+provider. The *licensed individual* assesses / examines / performs / plans. *Why: registries and funds
+register the business entity, not the practitioner, for commercial actions.*
 
-5. **What authority signals can I include?**
-   - License number?
-   - Years of experience?
-   - Certifications (EPA, manufacturer)?
-   - Trust markers (BBB rating)?
-   - Regional expertise insight?
-
-   **Must include at least 2.**
-
-6. **What would I cut if forced to halve the word count?**
-   Whatever you listed - question whether it belongs at all.
+**Self-critique honesty.** When asked whether the draft violated rules, name specific violations with rule
++ instance + severity. No generic reassurance.
 
 ---
 
-## 9. PRE-PUBLISH CHECKS
+## 8. AI-TELL REGISTRY (one canonical list; strip every one)
 
-### Automated Grep Checks
-Run these before submitting:
+The durable, high-signal tells are **structural** (the first block). The lexical/punctuation list is a
+weaker signal now (models suppress it, humans use it), so remove obvious instances but never rely on it as
+the primary detector. *Why each is banned: it reads as machine-generated and erodes trust + extractability.*
 
-```bash
-# Concept repetition (each should appear ≤2 times)
-grep -in "filter" content.md | wc -l
-grep -in "thermostat" content.md | wc -l
-grep -in "vent" content.md | wc -l
+### Structural tells (highest signal)
 
-# Professional mentions (should be ≤3)
-grep -ic "professional\|technician\|hvac tech" content.md
+1. **Contrastive-negation pile-ups (the #1 tell).** "not X, it's Y" / "not just X, but Y" / "works with your
+   body, not against it." **Max once per page; zero is better.** To prevent the tic: lead with what something
+   IS; delete defensive framing that preempts an objection nobody raised; if you must contrast, do it in one
+   clause ("X, not Y"); avoid "more than" and "not just." No tailing negations.
+2. **Rule-of-three pile-ups.** Stop making every list a tidy "X, Y, and Z." Vary the count (one, two, four).
+3. **Formulaic section skeleton.** Every section running claim -> bullets -> moralizing wrap, with uniform
+   paragraph and sentence length. Vary structure across sections.
+4. **Inflated-significance / puffery.** "stands as a testament," "plays a vital / crucial / pivotal role,"
+   "game-changer," "cutting-edge," "state-of-the-art," "world-class," "comprehensive solution,"
+   "life-changing." Replace with a concrete fact.
+5. **Superficial trailing -ing analysis clauses.** "..., highlighting the importance of," "..., underscoring
+   the need for," "..., ensuring the best outcomes," "..., making it a great choice." Cut or replace with a
+   real consequence.
+6. **Vague attribution.** "studies show," "research suggests," "experts agree," "it is well known." Name the
+   source or drop the claim.
+7. **Promotional / travel-brochure language.** "boasts," "nestled," "in the heart of," "renowned." Cut it.
+8. **Performative honesty / narrator throat-clearing.** "Let's start with the truth most pages skip," "Here
+   is the honest part," "An Honest Answer," "The good news is," "You now know more than most clinics tell you."
+9. **Throat-clearing intros.** "It's important to understand," "When it comes to," "Prior to."
+10. **AI-signature transitions.** "That said," "What's more," "Furthermore," "Moreover," "Additionally," "In
+    essence," "Ultimately," "Here's the thing:," "It's worth noting that," "In conclusion." Start the next
+    sentence with its content instead.
+11. **Filler tropes / generic behavioral fluff.** "eat less, move more," "in today's fast-paced world,"
+    "now more than ever," "take control of your health," "losing weight is a journey." Zero info gain.
+12. **Empathy fluff.** "You're not alone," "Don't worry," "We understand." (Brief, specific empathy is fine.)
 
-# Banned phrases (should be 0)
-grep -ic "important to note\|worth noting\|keep in mind" content.md
+### Lexical / punctuation tells (weaker signal; still clean obvious cases)
 
-# Em-dashes (should be 0)
-grep -c "—" content.md
-```
+- **No em dashes and no en dashes anywhere.** Use comma / colon / period / parentheses.
+- **Inflated vocabulary -> plain word:** utilize -> use, leverage -> use, myriad -> many, prior to ->
+  before, facilitate -> help, initiate -> start, in order to -> to. The "delve / tapestry / underscore /
+  pivotal / landscape / vibrant" list is now a WEAK signal: remove obvious instances, do not chase it.
+- **Use simple copulas.** Don't avoid is/are to sound sophisticated.
+- No exclamation marks unless genuinely urgent. No emojis. No mechanical boldface, no inline-header vertical
+  lists. Straight quotes, not curly. Sentence-case headings. Do not over-hyphenate. No false ranges.
+- No chatbot artifacts ("Certainly!", "I hope this helps"), no knowledge-cutoff disclaimers, no sycophancy,
+  no excessive hedging, no generic positive conclusions, no needless passive or subjectless fragments.
+- No persuasive-authority tropes ("the real question is," "at its core") and no signposting ("Let's dive in").
 
-### Manual Checks
-- [ ] Does the opening directly answer the search query?
-- [ ] Is every concept explained exactly once?
-- [ ] Do tables contain details while prose only introduces them?
-- [ ] Is total word count under budget for this intent type?
-- [ ] Would cutting any section lose ESSENTIAL information?
-- [ ] Are there more than 5 items in any cause/reason list?
-
----
-
-## 10. CONTENT TIGHTENING PROTOCOL
-
-**Run this if you hit 1,500+ words:**
-
-### Pass 1: Concept Deduplication
-1. List the 3-5 core concepts in your article
-2. Search for each concept term across ALL sections
-3. Keep the best explanation, delete others
-4. Add one-sentence cross-references where needed
-
-### Pass 2: Table/Prose Audit
-1. Find every table in the article
-2. Read the prose immediately after each table
-3. Delete any sentence that restates table data
-4. Maximum 2 sentences of prose after any table
-
-### Pass 3: List Pruning
-1. Find all lists with more than 5 items
-2. Identify which items cover 80% of real-world cases
-3. Keep those 4-5 items, delete the rest
-4. For deleted rare cases: "For less common issues, contact a technician"
-
-### Pass 4: Stock Phrase Reduction
-1. Search for "professional", "technician", "contact", "call"
-2. Keep the first instance
-3. Convert others to: link, assumed knowledge, or delete
-4. Consolidate remaining into single "When to Call" section
-
-### Pass 5: Scope Verification
-1. Re-read the original search query
-2. For each H2 section, ask: "Is this REQUIRED to answer the query?"
-3. Sections about financing, regional info, service expectations = cut or link
-4. Sections about rare causes, prevention in repair articles = cut or link
-
-### Pass 6: Section Surgery (if still over budget)
-1. You've done passes 1-5 and still over budget
-2. The problem is structural, not sentence-level
-3. Ask: "If I could only keep 3 sections, which would they be?"
-4. Write THAT article instead
+**Target:** fewer than 5 AI-fingerprint markers across the whole page.
 
 ---
 
-## 11. FORMAT DEFAULTS
+## 9. DRY: SAY IT ONCE
 
-### When to Use Tables (Tier 2 auto-loads)
-- Comparisons between 2+ options
-- Specifications with multiple attributes
-- Feature matrices
-- Any data with 2+ dimensions
+Same information twice is an instant rejection. *Why: duplication wastes the reader's time, dilutes the
+canonical chunk, and bloats the page.*
 
-**Tables are DEFAULT for comparisons. Prose is FALLBACK.**
-
-### When to Use Lists (Tier 2 auto-loads)
-- Procedures/steps (numbered)
-- Collections of items (bulleted)
-- Requirements/criteria (bulleted)
-- Anything sequential or enumerable
-
-**Lists are DEFAULT for procedures. Prose is FALLBACK.**
-
-### When to Use Paragraphs
-- Explanations requiring nuance
-- Connecting ideas with transitions
-- Narrative flow
-- When tables/lists would feel forced
-
-**Paragraphs are FALLBACK when tables/lists don't fit.**
-
-### Paragraph Rules
-- 2-3 sentences ideal
-- 4 sentences maximum (complex ideas only)
-- 1 sentence okay for emphasis or transitions
-- One idea per paragraph
-- Topic sentence after every H2
+- Table + prose restating the table = REJECT. Concept in the overview and again in a later section = REJECT.
+  Same step repeated across symptoms = REJECT.
+- **Cross-page DRY:** never duplicate a section the hub/spoke already owns (Section 2). Route + link instead.
+- No claim restatement across intro / body / conclusion. No summary padding. No transitional filler.
+- Re-anchor the entity only when it adds a NEW attribute, not for rhythm.
+- A repeated stock phrase (any phrase 3+ times unchanged) = REJECT. Vary it, link it, or consolidate to one
+  "when to act" section. Cross-reference with one sentence: "As covered in [section]..."
+- **Cohesion guardrail.** Self-contained chunks must still form one logical narrative journey, not a stack of
+  pasted dictionary entries. Define a foundational term ONCE in its canonical chunk, then build on it; do not
+  re-define the same term in consecutive headers. Standalone does not mean disconnected or repetitive. *Why:
+  over-applying chunk-isolation produces pages that re-explain the basics every section and never progress.*
 
 ---
 
-## 12. EXAMPLES (Inline)
+## 10. FORMAT WITH VARIETY (break walls of text, but not into all-bullets)
 
-### Good Troubleshooting Opening (Answers Query Immediately)
-**Query:** "furnace blowing cold air"
+Mix prose, short lists, tables, and FAQ accordions. Making every section a bullet list is its own AI tell.
 
-> If your furnace is blowing cold air, check three things first: thermostat settings, air filter, and pilot light (gas furnaces). These cover 80% of cold air issues and take less than 5 minutes to inspect.
+| Use a... | When |
+|---|---|
+| **Table** | 2+ entities compared across the same attributes; specs; pricing tiers; decision matrices |
+| **Numbered list** | A sequence / procedure / steps |
+| **Bulleted list** | 3+ parallel items |
+| **Paragraph** | Relational or explanatory content, nuance, transitions (the FALLBACK) |
 
-**Why it works:** Answers query in first sentence, gives actionable next steps, sets expectation.
-
----
-
-### Good Identification Opening (Table-First for Scanning)
-**Query:** "furnace making strange noises"
-
-> Different furnace noises indicate different problems. This guide from [business_name] helps you identify what you're hearing and whether it needs immediate attention.
->
-> | Noise | Likely Cause | Urgency |
-> |-------|--------------|---------|
-> | Loud bang | Delayed ignition | Turn off, call now |
-> | Grinding | Motor bearings failing | Call within 24 hrs |
-> | Squealing | Belt or bearing issue | Call within 1-2 days |
-> | Rattling | Loose panel or duct | Check panels (DIY) |
-> | Clicking (repeated) | Ignition attempts failing | Call for service |
-> | Humming (loud) | Transformer or capacitor | Call within 1-2 days |
->
-> Identify your noise in the sections below for specific causes, costs, and what to do.
-
-**Why it works:**
-- Triage table FIRST (reader finds their issue in seconds)
-- Urgency column answers "is this serious?" immediately
-- Covers 6 common noises (not artificially limited to 4)
-- Each row is a distinct, identifiable option
-- Intro + table = ~175 words, then brief depth per cause
+- Wide tables (4+ columns) get a horizontal-scroll wrapper for mobile.
+- Paragraphs: 2-3 sentences ideal, 4 max, one idea each, topic sentence after every H2.
+- Tables and FAQs: tier-2 format guides (`format-tables.md`, `format-lists.md`, `format-faqs.md`) carry the
+  full markup. Headlines: every table's first data-row cell is `<th scope="row">`; FAQs use native
+  `details/summary` with the slug = first sentence of the question (apostrophes stripped before hyphenating,
+  never `faq-1`); table id = slug of the nearest H2.
 
 ---
 
-### Bad Opening (Buries the Answer)
-**Query:** "furnace blowing cold air"
+## 11. ACCESSIBILITY & HTML OUTPUT (global baseline)
 
-> There's nothing worse than expecting warm air from your furnace and feeling cold air instead. This frustrating problem affects thousands of homeowners every winter, especially here in North Texas where temperature swings can be extreme. Understanding how your furnace works can help you diagnose the issue...
+- **WCAG AA contrast on every text/background pair:** 4.5:1 normal text, 3:1 large text + UI. Check the
+  math; do not eyeball saturated brand mid-tones (they almost always fail on white). Fix by darkening the
+  text, not lightening the background. Check every interactive state.
+- **Descriptive link text:** every anchor describes its destination in isolation. Ban "Learn more," "Click
+  here," "Read more," "Here," and icon-only links. Phone CTAs spell out the number. Vary internal anchor
+  text. *Why: fails WCAG 2.4.4 and zeroes out the anchor-text signal for SEO and LLM crawlers.*
+- **Page-level WCAG:** skip link, a `main` landmark, `focus-visible` (3px outline), `scroll-padding-top` so
+  a sticky header doesn't obscure focused elements, muted text ≥4.5:1.
+- `role="doc-biblioentry"` is deprecated: strip it from reference `<li>` (keep `doc-bibliography` +
+  `doc-biblioref`).
+- **Scoped CSS, no leakage:** one `<style>` block scoped under a single container class. For WordPress body
+  content output BODY ONLY (no `<!DOCTYPE>` / `<html>` / `<head>` / `<body>`, and **no `<h1>`** when the
+  CMS title supplies it).
+- **No public email** on any service-business site (no `mailto:`). Contact triad = call / text / form.
+  *Why: mailto is a spam vector with near-zero conversion upside.*
 
-**Why it fails:** 50+ words before any useful information. Empathy fluff. Regional content. Buries the answer.
-
----
-
-### Good Cause Section (Concise)
-> **Dirty Air Filter**
->
-> A clogged filter restricts airflow, causing your furnace to overheat and trigger the safety limit switch. This shuts off the burners while the blower continues running, producing cold air.
->
-> **Fix:** Check your filter. If you can't see light through it, replace it. Run your furnace for 15 minutes after replacing to see if the problem resolves.
-
-**Word count:** 67 words. Complete explanation + actionable fix.
-
----
-
-### Bloated Cause Section (Too Long)
-> **Dirty Air Filter**
->
-> One of the most common reasons your furnace might be blowing cold air is a dirty or clogged air filter. Your furnace's air filter is responsible for trapping dust, dirt, pet dander, and other airborne particles before they can enter your HVAC system. Over time, these particles accumulate on the filter, reducing airflow through the system.
->
-> When airflow is restricted, your furnace has to work harder to push air through the system. This extra strain can cause the heat exchanger to overheat. To protect itself from damage, your furnace has a safety feature called a limit switch that monitors the temperature of the heat exchanger. When temperatures get too high, the limit switch trips and shuts off the burners.
->
-> However, even though the burners shut off, the blower fan continues to run. This is actually a safety feature designed to cool down the heat exchanger. But from your perspective, it means your furnace is now blowing unheated air through your vents, which feels cold compared to what you were expecting.
->
-> The good news is that this is one of the easiest furnace problems to fix yourself...
-
-**Word count:** 200+ words. Same information, 3x longer. Repeats concepts. Unnecessary detail about how filters work.
+The container class name, brand colors, fonts, and any client-specific CSS are in the client overlay, not here.
 
 ---
 
-### Good Table Usage (No Prose Duplication)
-> **Heat Pump vs. Furnace: Quick Comparison**
->
-> | Factor | Heat Pump | Gas Furnace |
-> |--------|-----------|-------------|
-> | Best climate | Mild (above 35°F) | Cold (below 35°F) |
-> | Energy source | Electricity | Natural gas |
-> | Upfront cost | $4,000-7,000 | $3,000-5,000 |
-> | Operating cost | Lower in mild climates | Lower in cold climates |
->
-> For North Texas, heat pumps handle 90% of winter days efficiently, with backup heat for rare deep freezes.
+## 12. ON-PAGE SEO (authorable elements)
 
-**Why it works:** Table contains the data. Prose adds context not in the table.
+- **Title:** front-load the primary keyword in the first ~5 words; brand after a separator; 30-130 chars.
+- **Meta description:** a value-first click CTA, not a summary; ~155 visible chars (70-160 total).
+- **Slug:** descriptive, ≤5 words / 60 chars, lowercase, hyphenated.
+- Exactly one H1; intent satisfied above the fold; content type matches intent; depth the intent demands
+  without keyword stuffing.
+- Canonical self-referential; robots not noindex; charset + viewport present.
+- Outbound links to authoritative sources with the correct `rel`. Image `alt` specific (not stuffed),
+  decorative images `alt=""`, descriptive filenames.
+- Schema present (Organization / LocalBusiness / Service / FAQPage) as hygiene, not as a citation lever.
+- OG core tags present.
 
 ---
 
-### Bad Table Usage (Duplicates Prose)
-> Heat pumps work best in mild climates where temperatures stay above 35°F, while gas furnaces are better for cold climates below 35°F. Heat pumps use electricity and cost between $4,000-7,000 upfront, whereas gas furnaces use natural gas and cost $3,000-5,000. Operating costs are lower for heat pumps in mild climates but lower for furnaces in cold climates.
->
-> | Factor | Heat Pump | Gas Furnace |
-> |--------|-----------|-------------|
-> | Best climate | Mild (above 35°F) | Cold (below 35°F) |
-> | Energy source | Electricity | Natural gas |
-> | Upfront cost | $4,000-7,000 | $3,000-5,000 |
-> | Operating cost | Lower in mild climates | Lower in cold climates |
+## 13. COMPLIANCE POSTURE (match the client's signed-off stance; never invent claims)
 
-**Why it fails:** Prose restates every cell in the table. Reader sees same info twice.
+There is no single global compliance posture. **Match the compliance posture the client has signed off, as
+recorded in that client's overlay.** Some clients are permissive (the practitioner has approved specific
+claims); some are tightly regulated. Either way:
+
+- **Never strip required compliance text** (regulator hedging, "results vary," therapeutic disclaimers).
+  Hedged language in a regulated niche is required, not filler.
+- **If a required condition lives only in a compliance block, duplicate it into the sentence that makes the
+  claim** (Section 5.1). *Why: a chunk extracted without the disclaimer becomes a non-compliant claim.*
+- **Use the client's approved claims; do not hedge them away.** If the overlay says a claim is signed off,
+  state it plainly.
+- **Compliant language stays authoritative.** Required hedging belongs on the claim, not on the sentence's
+  structure. Keep subject-action-result: "A provider determines whether semaglutide is appropriate based on
+  your medical history," not "semaglutide might potentially be something a provider could look at." Do not
+  stack qualifiers ("may possibly help some patients in certain cases"); one qualifier on the verb is enough.
+  *Why: stacked hedges destroy extractability and authority while adding no compliance value.*
+- **Never invent a claim** the client has not approved, and never assert a credential without stating its
+  currency (Section 5.4).
+- Regulated-niche restricted terminology and word-bans are client-specific: see the overlay.
+
+For YMYL topics (health / finance / legal / safety) load `ymyl-overlay.md` for the qualified-language and
+conditional-claim constraints on top of this section.
+
+---
+
+## 14. PRE-PUBLISH CHECKLIST
+
+Run before handing the file over, then run `content-audit.md` for scoring.
+
+- [ ] One search intent locked; intent contract (observable / inferred / hidden) written.
+- [ ] Hub-and-spoke role known; nothing a sibling page owns slipped in; service pages carry zero city names
+      (location pages excepted).
+- [ ] **Scope ledger produced; every shipped section is WRITE-tagged** and names its single sub-query.
+      Fan-out gate run (hub/spoke actually read; duplicates routed + linked).
+- [ ] Sentence 1 answers the intent, self-contained and citable, entity-anchored. Zone 1 carries the 4
+      differentiation signals and every decision-critical fact (none trapped only in a CTA).
+- [ ] Benefits before mechanism. Every section carries ≥1 atomic fact; chunk lead-ins self-contained.
+- [ ] Substitution test passes section by section; <40% name-swappable body; ≥3 provider-specific
+      sentences per 1000 words; ≥1 unique angle; ≥3 verifiable trust signals.
+- [ ] Claim honesty: target-vs-measured language correct; credential currency stated in-sentence; statutes
+      verbatim; every unverified fact a visible placeholder; nothing fabricated.
+- [ ] One H1 (or none if CMS supplies it); all H2s query-matchable, sentence case, no colons; semantic
+      hierarchy intact.
+- [ ] **AI-tell sweep complete:** 0 em/en dashes; contrastive-negation ≤1; no rule-of-three rhythm; no
+      formulaic claim->bullets->wrap; no puffery; no trailing -ing analysis; no vague attribution; no AI
+      transitions; <5 fingerprint markers total.
+- [ ] One consistent voice (business -> customer), no authorial "I"; sentence AND paragraph length varied.
+- [ ] DRY: each concept once; no cross-page duplication; no phrase 3+ times.
+- [ ] Format varied (prose + lists + tables + FAQ), not every section a bullet dump; wide tables wrapped.
+- [ ] Accessibility: WCAG AA contrast checked (math, not eyeball); descriptive link text; skip link / main
+      landmark / focus-visible; scoped CSS; no public email.
+- [ ] On-page SEO: title front-loads keyword (30-130); meta is a CTA (70-160); slug ≤5 words; schema + OG
+      present; image alts specific.
+- [ ] Compliance posture matches the client overlay; required disclaimers intact and mirrored into claims.
+
+---
+
+## 15. THRESHOLDS (quick reference)
+
+| Metric | Value |
+|---|---|
+| Zone 1 size | min(0.20 × chars, 2000 chars) |
+| Page length: blog | 2,000-8,000 chars |
+| Page length: service / location | 3,000-10,000 chars |
+| Page length: comparison | 5,000-15,000 chars |
+| Page length: emergency | 1,500-5,000 chars |
+| Section split | in-set >250 words AND >40% body -> rebalance; out-of-set >250 words -> own page |
+| Fan-out sub-queries | 8-14 (emergency 4) |
+| Differentiation | 4 signals within ≤3 consecutive sentences = PASS |
+| Unique-data density | ≥3 provider-specific sentences / 1000 body words |
+| Name-swappable body | <40% |
+| AI fingerprint markers | <5 across page |
+| Commoditization 5-test | 0 = clean, 1-2 = partial, 3-4 = commoditized, 5 = full AI slop |
+| Title / meta | title 30-130 chars; meta 70-160 chars |
+| Slug | ≤5 words / 60 chars |
+| Audit score (`content-audit.md`) | ≥88 publish, 66-87 minor fixes, <66 rewrite |
+
+**Commoditization 5-test (each is a strike):** ≥40% body swappable / unique-data <3 per 1000 / no unique
+angle / <3 trust signals / ≥5 AI markers.
 
 ---
 
 ## Quick Reference Card
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  BEFORE WRITING                                         │
-│  □ What's the exact search query?                       │
-│  □ What action does this enable?                        │
-│  □ What's the MINIMUM info needed?                      │
-├─────────────────────────────────────────────────────────┤
-│  WHILE WRITING                                          │
-│  □ Each concept explained ONCE only                     │
-│  □ Tables contain details, prose introduces             │
-│  □ 4-5 causes max, not exhaustive lists                │
-│  □ Check word count at 500, 1000, 1500                 │
-├─────────────────────────────────────────────────────────┤
-│  AFTER WRITING                                          │
-│  □ Run grep checks for repetition                       │
-│  □ Verify under word budget for intent type            │
-│  □ Would cutting any section lose essential info?       │
-│  □ Professional mentions ≤3?                           │
-└─────────────────────────────────────────────────────────┘
+BEFORE WRITING
+  - Triangulate intent (observable / inferred / hidden); lock ONE query
+  - Know hub-and-spoke role; stay in lane
+  - Scope ledger (WRITE / ROUTE / CUT) + fan-out gate  <- THE GATE
+  - Pick the page-type blueprint
+
+WHILE WRITING
+  - Sentence 1 = self-contained, citable, entity-anchored answer
+  - Benefits before mechanism; 4 differentiation signals in Zone 1
+  - >=1 atomic fact per section; chunk lead-ins self-contained
+  - Substitution test every section; vary sentence + paragraph length
+  - Each concept ONCE; tables hold data, prose introduces
+
+AFTER WRITING
+  - AI-tell sweep (0 em dashes, contrastive-negation <=1, <5 markers)
+  - Claim honesty (target-vs-measured, credential currency in-sentence)
+  - WCAG AA contrast + descriptive links; scoped CSS; no public email
+  - Title/meta/slug; placeholders for unverified facts
+  - Pre-publish checklist -> content-audit.md
 ```

@@ -1,0 +1,71 @@
+# Writing Lessons Log (append-only)
+#
+# PURPOSE
+#   This is the write-ahead log for the writing system. Every time we learn
+#   something about how to write better copy (you correct a draft, an audit
+#   catches a new tell, a rule gets refined), append ONE entry here with
+#   status: pending. Appending is safe to do mid-task; it never edits existing
+#   content, so it can't break anything.
+#
+#   A periodic CONSOLIDATE task (see CONSOLIDATE.md) reads every pending entry,
+#   folds it into core-rules.md / content-audit.md / the format guides, then
+#   flips it to status: incorporated with an anchor to where it landed.
+#   core-rules.md is the compiled artifact the writer reads; this file is the
+#   immutable history of how it got that way.
+#
+# WHO APPENDS
+#   - You, via "log this" / a quick paste of a correction.
+#   - The writing-gate skill, automatically, when its self-audit catches a
+#     violation that is NOT already a named rule in core-rules.md.
+#
+# ENTRY SCHEMA
+#   - id:       <YYYY-MM-DD-kebab-slug>   unique, date-prefixed
+#     project:  <client or project the lesson came from, or "global">
+#     rule:     <the rule, imperative voice: "Ban X", "Always Y">
+#     why:      <one phrase, the reason; this is what makes it reusable>
+#     section:  <target home: banned-patterns | voice | structure | format-tables
+#                | format-lists | format-faqs | ymyl | accessibility | intent | scope>
+#     example:  <optional good/bad example>
+#     status:   pending | incorporated
+#     anchor:   <set on incorporation: file#heading where the rule now lives>
+#     source:   <where it came from: "user correction", "llm-audit", "humanizer", etc.>
+#
+# ---------------------------------------------------------------------------
+
+lessons:
+  # ---- EXAMPLE of an incorporated entry (already in core-rules) ----
+  - id: 2026-06-21-contrastive-negation
+    project: RWLC
+    rule: "Ban contrastive negation ('It's not X, it's Y'; 'This isn't about A, it's about B')."
+    why: "AI fingerprint; reads as marketing cadence, not a person talking."
+    section: banned-patterns
+    example: "Bad: 'It's not a diet, it's a lifestyle.'  Good: 'It's a long-term change to how you eat.'"
+    status: incorporated
+    anchor: "core-rules.md#banned-patterns"
+    source: "user correction on beyond-the-diet rewrite"
+
+  # ---- PENDING entries go below; CONSOLIDATE will process and flip them ----
+  - id: 2026-06-21-on-a-supporting-blog-do-not-fully-answer
+    project: global
+    rule: "On a supporting blog, do not fully answer fan-out sub-queries the sibling service/money page owns; answer briefly and link UP (route, don't duplicate)"
+    why: "a blog that regurgitates the service page's commercial sub-queries competes with it in the SERPs and splits ranking signals (self-cannibalization)"
+    section: scope
+    status: incorporated
+    anchor: "core-rules.md#3-scope-ledger-fan-out-gate"
+    source: "user insight 2026-06-21"
+  - id: 2026-06-21-cohesion-guardrail-blocks-must-stand-alo
+    project: global
+    rule: "Cohesion guardrail: blocks must stand alone AND the page must read as one logical narrative journey; do not repeat the same foundational definition in consecutive headers, and standalone sections must not read like pasted dictionary entries"
+    why: "over-applying chunk-isolation produces repetitive, disjointed pages that re-define the same term every section"
+    section: structure
+    status: incorporated
+    anchor: "core-rules.md#9-dry-say-it-once"
+    source: "blog post on writing for LLM agents (2026-06-21)"
+  - id: 2026-06-21-compliant-language-stays-authoritative-k
+    project: global
+    rule: "Compliant language stays authoritative: keep subject-action-result structure under required hedging; do not weaken every sentence with stacked qualifiers"
+    why: "stacked hedges ('might potentially be something a provider could look at') destroy extractability and authority; compliant can still be a clean SVO claim"
+    section: voice
+    status: incorporated
+    anchor: "core-rules.md#13-compliance-posture"
+    source: "blog post on writing for LLM agents (2026-06-21)"

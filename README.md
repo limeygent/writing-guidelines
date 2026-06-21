@@ -125,6 +125,30 @@ Quality gate checklist with:
 - **v2.1 (Dec 2024)**: Added Section 6.6 (Experience Demonstration)
   - Problem: Google HCU audits flagged missing expertise signals
   - Solution: Company voice + qualified language patterns (without fabricating personal claims)
+- **v3 (Jun 2026)**: Reconciled five drifted rule sets into one global Writing Constitution + overlay system
+  - Problem: rules had drifted across projects (RWLC SOP, dental clients, feedback memories, the inverted
+    audit rubric); core-rules.md was niche-locked (HVAC examples, EPA/TACLA license, "professional/technician"
+    greps) and missing most of the durable global machinery.
+  - Solution: rewrote `core-rules.md` as a niche-agnostic constitution and added a thin per-client overlay
+    layer (`overlays/_TEMPLATE.md` + `overlays/rwlc.md`). A writer now reads core-rules.md + one overlay.
+  - Integrated into core-rules.md (global): intent contract (observable/inferred/hidden); lock-one-intent;
+    hub-and-spoke discipline + zero-city-names-on-service-pages; scope ledger (WRITE/ROUTE/CUT) + fan-out
+    gate; Zone 1 / self-contained citable opener + 4 differentiation signals; benefits-before-mechanism;
+    anchorable-statement 4 tests + atomic-fact-per-section; chunk-isolation for RAG; substitution test +
+    commoditization 5-test; claim honesty (target-vs-measured, credential-currency-in-sentence,
+    statutes-verbatim, never-fabricate + placeholders); trust signals; searcher-journey section blueprints
+    by page type + service-page archetypes + MECLABS weighting + trust hierarchy; heading hygiene + section
+    integrity; voice + audience registers + business-vs-individual attribution + self-critique honesty;
+    consolidated AI-tell registry (structural + lexical, one list, no duplicates); DRY incl. cross-page;
+    format-with-variety; accessibility (WCAG AA contrast, descriptive links, page-level WCAG,
+    doc-biblioentry deprecation, scoped CSS, no public email); on-page SEO authorables; compliance-posture
+    principle (match client sign-off, never invent, mirror disclaimers into claims); thresholds table.
+  - Moved to overlays (out of global): AHPRA word-bans, RWLC's permissive posture + approved claims,
+    brand colors/fonts/CSS class names, hub/spoke URLs, locked phone/address/license, gold-standard paths.
+  - Conflict resolved: old YMYL "never include cost estimates" vs HVAC core "3+ cost ranges required" vs
+    inventory "target-vs-measured honesty." Resolution: core-rules.md states the global PRINCIPLE (claim
+    honesty + match signed-off posture); the literal cost posture stays in `ymyl-overlay.md` and the
+    per-client overlay. Removed the HVAC-specific required-cost-ranges mandate from global.
 
 ---
 
