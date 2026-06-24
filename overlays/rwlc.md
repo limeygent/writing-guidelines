@@ -3,8 +3,10 @@
 Thin per-client overlay. Carries ONLY RWLC-specifics. The global base is `../core-rules.md` (the Writing
 Constitution): load it first, then this file. Everything global (intent contract, scope ledger, fan-out
 gate, AI-tell registry, chunk isolation, accessibility, on-page SEO) lives there and is NOT repeated here.
-Full project SOP and the gold-standard worked example are in the RWLC repo
-(`PMSI/RWLC/CONTENT-WRITING-RULES.md` and `research/blog-intent-audit/rewrites/beyond-the-diet-consolidated.html`).
+The gold-standard worked examples are in the RWLC repo:
+`research/blog-intent-audit/rewrites/beyond-the-diet-consolidated.html` (medically-supervised pillar) and
+`research/blog-intent-audit/rewrites/cut-sugar-consolidated.html` (sugar cluster). Blog consolidation
+strategy and per-cluster intent: `research/blog-intent-audit/FINDINGS-AND-REWRITE-STRATEGY.md`.
 
 ---
 
@@ -35,10 +37,47 @@ Full project SOP and the gold-standard worked example are in the RWLC repo
 
 ## 3. Locked facts (verbatim; never paraphrase or invent)
 
-- Practitioner: Dr. Kevin Sattele. [VERIFY exact credential/registration # before publishing; placeholder it]
+- Practitioner: **Dr. Kevin M. Sattele, MD** — board-certified internal medicine physician (American Board
+  of Internal Medicine; certified 1998, recertified 2008 and 2018).
+  - **CANONICAL CREDENTIAL CLAIM (state with confidence; doctor-approved):** *"Dr. Kevin M. Sattele is a
+    board-certified internal medicine physician with more than 20 years of clinical bariatric experience."*
+    This is the precise, defensible framing — **internal medicine = the board certification (ABIM); bariatric
+    = his clinical experience, NOT a certification.** NEVER write "board-certified bariatric physician,"
+    "board-certified in bariatric medicine," or "board-certified in obesity medicine" (the recurring error in
+    the Jun-10 spoke drafts). Use the canonical sentence where one clean credential line is needed.
+  - **SC medical license #18841** (full Medicine & Surgery) — active and in good standing, valid through
+    **2027**. **NPI 1174565766** (Internal Medicine). [Re-verify license status in 2027.]
+  - Education/training: **MD, University of South Carolina School of Medicine, Columbia, 1995**; Internal
+    Medicine residency at Richland Memorial Hospital (now Prisma Health), Columbia SC, 1995–1998 (**Chief
+    Resident, 1998**); undergraduate Biology/Chemistry, Francis Marion University, 1990; prior U.S. Air Force
+    Medical Laboratory Specialist.
+  - Practicing medicine since **1998**; shifted focus to medical weight loss and aesthetics in **2007**;
+    **more than 20 years of clinical bariatric experience** (doctor-approved framing — see canonical claim
+    above). Pair the board certification (internal medicine) with the bariatric *experience*; never merge them
+    into a single "bariatric board certification."
+  - Has helped **more than 18,000 patients** across the Pee Dee and Grand Strand (client-confirmed; some
+    clinic pages may still display the older "15,000+").
+  - **No public board actions, disciplinary history, complaints, or sanctions** found.
+  - Verification source: SC Board of Medical Examiners license lookup —
+    https://verify.llronline.com/LicLookup/Med/Med.aspx?div=16 (search "Sattele" or license 18841).
+  - **Clinic cities are Florence, Murrells Inlet, and North Myrtle Beach / Little River — REFERENCE /
+    VERIFICATION ONLY. The city-name ban below still applies: never name these cities in copy; use "three SC
+    locations across the Pee Dee and Grand Strand."**
+- **License status (atomic fact): ACTIVE / in good standing** (SC #18841, valid through 2027). State plainly.
+- Prescribing & dispensing authority: as a fully licensed SC physician (license #18841, active), Dr. Sattele
+  is authorized to **prescribe AND dispense the program medications on-site** within a bona-fide
+  physician-patient relationship — **phentermine** (Schedule IV appetite suppressant; prescribed and
+  dispensed on-site), **B12 / lipotropic injections**, **HCG injections** (prescription injectable, physician-
+  supervised), and **compounded semaglutide (GLP-1)**. SC permits licensed physicians to dispense from their
+  own practice; medications are included in the program price and dispensed on-site under medical supervision.
+  Compliance guardrails: HCG is **not FDA-approved for weight loss** (legitimate physician off-label use under
+  supervision — never imply FDA-approved-for-weight-loss); compounded semaglutide availability tracks
+  post-shortage FDA enforcement (tightened through 2025), so `[VERIFY current availability before publishing]`.
 - Business: Rapid Weight Loss Centers (medical weight loss + esthetics).
-- Service area / geo nodes: Grand Strand / Pee Dee, South Carolina. Named nodes: Florence, Little River,
-  Murrells Inlet. Three named SC locations.
+- Service area: the **Pee Dee and Grand Strand areas of South Carolina**. **Do NOT name individual cities in
+  copy** (not Florence, Little River, Murrells Inlet, North Myrtle Beach, or any other): the center city
+  labels drift and conflict between sources, so use only the two regional area names. "Three South Carolina
+  locations across the Pee Dee and Grand Strand" (the count, no city names) is fine.
 - Contact: booking via `/contact-us/`. (No public email; global rule.) [VERIFY phone/address, placeholder]
 - Anything not verifiable from the client or a live page = `<mark class="verify">[VERIFY: ...]</mark>` or
   `[NEEDS FROM CLIENT: ...]`, listed in an HTML comment at the file bottom.
@@ -60,7 +99,10 @@ Use these to de-commoditize every section; they are true and specific:
 - "10 to 30 pounds a month eating real food from a local supermarket."
 - Named tests to anchor claims: thyroid, fasting insulin, cortisol, metabolic panel.
 - Named conditions: PCOS, insulin resistance, metabolic syndrome.
-- Three named SC locations; Dr. Kevin Sattele.
+- Three SC locations across the Pee Dee and Grand Strand (the count, never the city names; see Section 3), led
+  by **Dr. Kevin M. Sattele, MD** — a board-certified internal medicine physician with **more than 20 years of
+  clinical bariatric experience** (ABIM; active SC license #18841), who prescribes **and dispenses** the
+  weight-loss medications on-site under his own license.
 
 ## 6. Architecture (hub-and-spoke map)
 
@@ -75,22 +117,89 @@ Use these to de-commoditize every section; they are true and specific:
 
 When a medication comes up on a blog, name it and link to its spoke; never describe drug mechanism on the blog.
 
+### Internal-linking discipline (RWLC-specific)
+
+**The hub-and-spoke is the MONEY-PAGE layer only.** Hub = `/weight-loss-service/`; spokes = the treatment
+service pages (`/phentermine/`, `/compounded-semaglutide-glp-1-medication/`, `/b12-lipotropic-injections/`,
+`/hcg-diet/`). **Blog posts are NOT hubs or spokes** — they are a separate *supporting-content* layer that
+feeds the money pages. So linking rules differ by what you are writing:
+
+- **Rewriting a spoke (a service/money page):** it may link to related/sibling spokes and the hub. This is
+  normal hub-and-spoke interlinking among money pages, and is encouraged where relevant.
+- **Writing a supporting blog post:** link manually ONLY to money/service pages, never blog-to-blog.
+  - **Hub link: exactly one, in or near the opening paragraph,** on a topical anchor (never the brand name;
+    core-rules Section 11). Do not duplicate the hub link further down the page. **A CTA button that points at
+    the hub (or any money page) COUNTS as that one hub link.** So a mid-page conversion CTA must point to
+    `/contact-us/` (booking), never to the hub: only the single opener text link goes to `/weight-loss-service/`.
+  - **Spoke link: only where the post specifically names/discusses that treatment** (e.g. it names phentermine
+    or HCG), not by default. A post with no specific-medication content links to the hub only.
+  - **Never hand-insert blog-to-blog (post-to-post) links.** Same-category cross-linking is generated
+    automatically on the site; manual post-to-post links duplicate it. State the cross-reference in plain text
+    and let the related-posts module handle discovery.
+- The closing booking CTA to `/contact-us/` is a conversion action, not a money-page body link, and is always allowed.
+
 ## 7. HTML / CSS specifics
 
 Output BODY CONTENT ONLY for the WP Code tab: no `<!DOCTYPE>/<html>/<head>/<body>`, **no `<h1>`** (the WP
-page title supplies it). Wrap everything in `<div class="rwlc-post">` with ONE scoped `<style>` block as the
-first child (scoped under `.rwlc-post` so it cannot leak to the theme).
+page title supplies it), **no `.rwlc-post` wrapper div, and NO `<style>` block at all** (client decision,
+2026-06-21). All the CSS already lives in the theme's customizer, so output plain semantic HTML using the
+classes the theme styles (`.table-scroll`, `table`/`thead`/`th[scope]`, `details.faq-item`, `.inline-cta`,
+`.btn`/`.btn-primary`, `.sr-only`, `mark.verify`) and let the theme render them. Do NOT inline or re-paste a
+style block. This overrides the global "scope under a container class" default in core-rules Section 11.
 
 - Brand: navy `#2e3577` (H2 + table headers), teal `#005464` (H3 + links), body `#5a5150`. [Verify each
   pair clears WCAG AA on its background (global rule; do not eyeball).]
 - Fonts: Work Sans / Zilla Slab.
 - FAQ accordions: live-homepage style (orange `Q)` questions, `+`/`−` toggle, bottom-border rows). Native
-  `details/summary`; slug = first sentence of the question. Paste the FAQ CSS block verbatim from the RWLC
-  SOP / the gold-standard file.
+  `details/summary`; slug = first sentence of the question. Styling lives in the theme (no inline CSS).
+  **The orange `#f60` FAQ question color is an ACCEPTED, client-approved brand exception to WCAG AA contrast
+  (sitewide). Do NOT flag it as an audit finding or try to darken it.**
 - Tables: WCAG 2.2 pattern (`.table-scroll role="region" tabindex="0"`, first cell of every data row
   `<th scope="row">`, `id="table-SLUG"`). A supporting blog rarely needs a pricing/program table; route to hub.
-- Internal CTA: `<div class="inline-cta">` with a navy button to `/contact-us/` (booking) and
-  `/weight-loss-service/` (learn more / program options).
-- Gold-standard worked example to copy structure/voice/HTML/style block from:
-  `research/blog-intent-audit/rewrites/beyond-the-diet-consolidated.html`.
+- Internal CTA: `<div class="inline-cta">` with a navy `.btn-primary` button to `/contact-us/` (booking).
+  Per Section 6, CTA buttons go to `/contact-us/`, NOT the hub; the single hub link is the topical text link
+  in the opening paragraph.
+- Gold-standard worked examples to copy structure/voice/HTML from (no style block):
+  `research/blog-intent-audit/rewrites/beyond-the-diet-consolidated.html` and `cut-sugar-consolidated.html`.
 - Note redirects for any merged source URLs.
+
+## 8. Brand triple bank (RWLC source-of-truth facts)
+
+Pre-vetted **Subject → Predicate → Object** facts (core-rules §5.1 / §5.3a). Draw anchorable statements from
+this bank before inventing new claims; reuse the same clean facts across pages for consistency. All rows are
+sourced from §3 (Locked facts) and §5 (Differentiators) above, so `Verified? = yes` (Dr. Sattele's license is
+now resolved: SC #18841, active). **City-name ban applies: region names only, never individual cities (§3).**
+Approved-claim rows are tagged so the permissive posture (§2) stays visible.
+
+| Subject | Predicate | Object | Category | Verified? |
+|---|---|---|---|---|
+| Rapid Weight Loss Centers | provides | physician-supervised medical weight loss | Services/Offerings | yes |
+| Rapid Weight Loss Centers | provides | esthetics services | Services/Offerings | yes |
+| Rapid Weight Loss Centers | prescribes | phentermine | Services/Offerings | yes |
+| Rapid Weight Loss Centers | prescribes | compounded semaglutide (GLP-1 medication) | Services/Offerings | yes |
+| Rapid Weight Loss Centers | offers | B12 / lipotropic injections | Services/Offerings | yes |
+| Rapid Weight Loss Centers | offers | the HCG diet program | Services/Offerings | yes |
+| Rapid Weight Loss Centers | serves | the Pee Dee and Grand Strand areas of South Carolina | Target Audience | yes |
+| Rapid Weight Loss Centers | operates | three South Carolina locations | Target Audience | yes |
+| Rapid Weight Loss Centers | helps | people for whom diet and exercise alone have not worked | Target Audience | yes |
+| Rapid Weight Loss Centers | treats patients with | PCOS, insulin resistance, and metabolic syndrome | Target Audience | yes |
+| Rapid Weight Loss Centers | helps patients lose | 10 to 30 pounds a month eating real food from a local supermarket | Value Propositions | yes (doctor-approved claim) |
+| Rapid Weight Loss Centers | targets | belly fat | Value Propositions | yes (doctor-approved claim) |
+| Rapid Weight Loss Centers | enables | weight loss without fad dieting or quick fixes | Value Propositions | yes |
+| Rapid Weight Loss Centers | sequences | lab testing before any prescription | Differentiators | yes |
+| Rapid Weight Loss Centers | prescribes medication only after | physician review | Differentiators | yes |
+| Rapid Weight Loss Centers | measures | body composition (fat lost vs muscle kept, not just the scale) | Differentiators | yes |
+| Rapid Weight Loss Centers | monitors | patient vitals every two weeks | Differentiators | yes |
+| Rapid Weight Loss Centers | tests | thyroid, fasting insulin, cortisol, and a metabolic panel | Differentiators | yes |
+| Rapid Weight Loss Centers | is led by | Dr. Kevin M. Sattele, MD | Differentiators | yes |
+| Rapid Weight Loss Centers | has helped | more than 18,000 patients | Value Propositions | yes (client-confirmed) |
+| Rapid Weight Loss Centers | dispenses on-site | phentermine, B12/lipotropic, HCG, and compounded semaglutide under medical supervision | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | is board-certified in | internal medicine (American Board of Internal Medicine) | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | has | more than 20 years of clinical bariatric experience | Differentiators | yes (doctor-approved) |
+| Dr. Kevin M. Sattele, MD | holds | an active SC medical license (#18841, valid through 2027) | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | is licensed to | prescribe and dispense the weight-loss medications on-site | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | earned his MD from | the University of South Carolina School of Medicine (1995) | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | completed | an internal medicine residency at Richland Memorial Hospital / Prisma Health (Chief Resident, 1998) | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | has | 20+ years' experience in medical weight loss and aesthetics | Differentiators | yes (clinic-stated) |
+
+*Provenance: triple-bank format from Sizemore + SEO Notebook (`../sources/INDEX.md`); every fact above is sourced from §3 (Locked facts) and §5 (Differentiators) of this overlay.*
