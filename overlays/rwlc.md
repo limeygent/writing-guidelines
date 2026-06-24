@@ -203,3 +203,82 @@ Approved-claim rows are tagged so the permissive posture (§2) stays visible.
 | Dr. Kevin M. Sattele, MD | has | 20+ years' experience in medical weight loss and aesthetics | Differentiators | yes (clinic-stated) |
 
 *Provenance: triple-bank format from Sizemore + SEO Notebook (`../sources/INDEX.md`); every fact above is sourced from §3 (Locked facts) and §5 (Differentiators) of this overlay.*
+
+---
+
+## 9. Medspa / esthetics cluster (SEPARATE from the weight-loss hub-and-spoke)
+
+RWLC also runs a **medical spa** (esthetics). This is a distinct content cluster with its own hub-and-spoke;
+it does NOT share the weight-loss hub (§6). All global rules + the brand voice (§1), compliance posture (§2),
+HTML/CSS conventions (§7), and city-name ban (§3) apply identically. The de-commoditizing angle for the whole
+cluster: **physician-administered injectables at a medical clinic** (an MD performs/oversees the injections),
+not tech/aesthetician-run treatments like most medspas.
+
+### 9.1 Medspa architecture (hub-and-spoke)
+
+| Role | URL | Owns |
+|---|---|---|
+| **Medspa hub** | `/medspa/` | esthetics overview, why-choose-us, cross-links to each treatment, booking. Covers Botox, fillers, mesotherapy. **Latisse is OUT of scope (client decision) — do not feature it.** |
+| **Spoke** | `/botox/` | Botox mechanism, treatment areas, duration, safety/candidacy, cost |
+| **Spoke** | `/restylane-juvederm-radiesse/` | dermal fillers (Restylane, Juvederm, Radiesse), areas, longevity, safety, cost |
+| **Spoke** | `/mesotherapy/` | mesotherapy for spot fat / cellulite, mechanism, sessions, safety, cost |
+
+Same internal-linking discipline as §6 (spokes may interlink to the medspa hub and sibling medspa spokes;
+booking CTAs → `/contact-us/`, not the hub).
+
+### 9.2 Medspa providers (locked facts)
+
+- **Dr. Kevin M. Sattele, MD** — SAME canonical credential as §3 (board-certified internal medicine physician
+  with 20+ years' clinical bariatric experience; active SC license #18841). The live medspa pages mislabel him
+  "**Bariatric Physician**" — that is the recurring wrong credential; replace it everywhere.
+- **Becky Harlan, NP** — nurse practitioner at the practice (new locked fact). `[VERIFY exact title/credential
+  and scope]`.
+- Botox and filler pages state **Dr. Sattele performs the injections**; mesotherapy administrator is unstated.
+  `[VERIFY: who administers each treatment — Dr. Sattele vs NP Harlan, and under what supervision]`.
+
+### 9.3 Medspa differentiators (substitution-test ammo)
+
+- **Physician-administered / physician-supervised injectables** — the headline differentiator vs. medspas that
+  use technicians or aestheticians.
+- Treatments delivered in a **medical-clinic setting** (the same trusted practice as the weight-loss program).
+- **Free consultation** before treatment.
+- NP support (Becky Harlan) alongside the physician.
+
+### 9.4 Medspa compliance guardrails (CRITICAL — read before writing mesotherapy)
+
+- **Mesotherapy is NOT FDA-approved for fat or cellulite reduction.** Do NOT state or imply the *procedure* is
+  FDA-approved. The live page's "injecting FDA-approved medications" is misleading and must be reframed (any
+  individual ingredient approved for another use does not make mesotherapy-for-fat an approved use). Frame it
+  like HCG: a physician-supervised, off-label cosmetic treatment. `[VERIFY: exact injected ingredients — the
+  page lists "hormones," which needs confirmation and is omitted unless verified.]`
+- Mesotherapy efficacy verbs: the live claims "**melt fat cells**," "**inches can be lost**," "**breaks down
+  fat**" must soften to careful, non-guaranteeing verbs ("may help reduce," "many patients see") and are
+  `[VERIFY: Dr. Sattele sign-off]` until approved. No guaranteed results (§2).
+- **Botox and dermal fillers ARE FDA-approved** for cosmetic use — those approval claims are fine to state.
+- The "**~90% of patients rated improvement**" Botox figure is from the manufacturer's clinical trials —
+  attribute it (answer-first, source trailing), do not present it as an RWLC outcome.
+- Every injectable page must state **candidacy + common side effects** (the live pages omit these); injectables
+  are physician-supervised.
+
+### 9.5 Known defects on the live medspa pages (fix on rewrite)
+
+- Replace the "**Bariatric Physician**" credential with the §3 canonical claim on all 4 pages.
+- Fillers page currently shows "**Common Questions About Botox®**" FAQs → replace with filler-specific FAQs.
+- A stray **compounded-semaglutide "not FDA-approved" disclaimer** bleeds onto the mesotherapy page → remove
+  (it belongs on the GLP-1 spoke, not here).
+- Reconcile contradictory numbers `[VERIFY]`: mesotherapy sessions (hub "6–8 / 4 weeks apart" vs page "4–6 /
+  1–2 weeks apart"); Botox duration ("up to 4 months" vs "3–4 months"); filler longevity ("4–6" vs "6–12 mo").
+- Apply the **city-name ban** + **CTA routing** to the "3 Convenient Locations" / `#consultOC` patterns.
+
+### 9.6 Medspa triple bank (additions; tag claims needing sign-off)
+
+| Subject | Predicate | Object | Category | Verified? |
+|---|---|---|---|---|
+| Rapid Weight Loss Centers | operates | a medical spa (esthetics) | Services/Offerings | yes |
+| Rapid Weight Loss Centers | offers | Botox, dermal fillers (Restylane/Juvederm/Radiesse), and mesotherapy | Services/Offerings | yes |
+| Rapid Weight Loss Centers | delivers | physician-administered injectable treatments in a medical-clinic setting | Differentiators | yes |
+| Dr. Kevin M. Sattele, MD | performs | the Botox and dermal-filler injections | Differentiators | yes (who-administers per-treatment [VERIFY]) |
+| Becky Harlan, NP | supports | medspa care as a nurse practitioner | Differentiators | yes ([VERIFY title/scope]) |
+| Botox | is | an FDA-approved cosmetic injectable that relaxes muscles to smooth wrinkles | Services/Offerings | yes |
+| Dermal fillers | restore | facial volume and smooth wrinkles (FDA-approved) | Services/Offerings | yes |
+| Mesotherapy | is | a physician-supervised, off-label injectable for spot fat and cellulite (NOT FDA-approved for this use) | Services/Offerings | yes (efficacy specifics [VERIFY sign-off]) |
