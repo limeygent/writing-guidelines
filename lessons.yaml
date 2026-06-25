@@ -69,3 +69,131 @@ lessons:
     status: incorporated
     anchor: "core-rules.md#13-compliance-posture"
     source: "blog post on writing for LLM agents (2026-06-21)"
+  - id: 2026-06-21-llm-audit-is-a-mandatory-non-skippable-gate
+    project: global
+    rule: "The scored LLM audit (content-audit.md), ideally run by a separate validator agent, is a MANDATORY non-skippable gate. audit.sh (deterministic) is necessary but never sufficient: it cannot judge intent satisfaction, substitution test, scope drift, DRY, or claim honesty."
+    why: "skipping the subjective audit is a silent fail point; a draft can pass every mechanical check and still miss the intent or read as commodity"
+    section: scope
+    status: incorporated
+    anchor: "core-rules.md#0-order-of-operations"
+    source: "user policy 2026-06-21 (sugar-cluster session)"
+  - id: 2026-06-21-discover-intent-from-evidence-not-topic-label
+    project: global
+    rule: "For a net-new or never-analyzed page, DISCOVER intent from evidence (live SERP + People Also Ask, plus GSC query data if the URL exists) before writing; never assume it from the topic label. The intent step may be skipped ONLY when an upstream bulk audit already resolved this exact page's intent from real demand (e.g. a merge whose canonical + redirects were already set)."
+    why: "writing to an assumed topic instead of the SERP-resolved intent produces on-topic drift that ranks for nothing; merges are exempt because the bulk intent audit already did this work"
+    section: intent
+    status: incorporated
+    anchor: "core-rules.md#0-order-of-operations"
+    source: "user question 2026-06-21 (single-post intent procedure)"
+  - id: 2026-06-21-anchor-on-destination-topic-not-brand-name
+    project: global
+    rule: "Never anchor an internal link on the brand/business/practitioner name when it points to a topic page. Keep the brand as a plain-text entity mention; put the link on a phrase naming the destination's subject (e.g. link 'medical weight loss program' -> the service hub, not the company name)."
+    why: "a name is navigational, not topical; brand-anchored links fail to describe the destination and waste the anchor-text signal the linked money page needs to rank"
+    section: accessibility
+    status: incorporated
+    anchor: "core-rules.md#11-accessibility-html-output-global-baseline"
+    source: "user correction 2026-06-21 (sugar-post opener link on brand)"
+  - id: 2026-06-21-rwlc-blogs-are-supporting-not-hub-spoke-linking
+    project: RWLC
+    rule: "Hub-and-spoke is the MONEY-PAGE layer only (hub + treatment spokes). Blog posts are a separate supporting-content layer, not hubs/spokes. A spoke service page may link to sibling spokes + hub. A supporting blog links manually ONLY to money/service pages: exactly one hub link in/near the opener, a spoke link only where it names that specific treatment, and NEVER a hand-inserted blog-to-blog link (same-category cross-linking is automatic on the site). Booking CTA to /contact-us/ always allowed."
+    why: "manual blog-to-blog links duplicate the site's automatic same-category related-posts system; over-linking the hub dilutes the single up-link signal"
+    section: scope
+    status: incorporated
+    anchor: "overlays/rwlc.md#6-architecture-hub-and-spoke-map"
+    source: "user clarification 2026-06-21 (sugar-post linking)"
+  - id: 2026-06-21-content-audit-word-count-must-be-page-type-aware
+    project: global
+    rule: "content-audit.md word-count scoring must be PAGE-TYPE-AWARE and reconciled with core-rules Section 15 char bands. A comparison page or a demand-preserving merge legitimately runs longer than a short how-to and must NOT be auto-failed at a flat 2,000-word ceiling. Fix length by trimming commodity sections (which also lifts the substitution-test ratio), never by injecting brand name-drops."
+    why: "a zero-context agent's solid comparison-merge draft was auto-zeroed on word count by a flat HVAC-era ceiling, masking that it was otherwise near-publish"
+    section: structure
+    status: incorporated
+    anchor: "content-audit.md#1-word-count-check-20-points"
+    source: "zero-context subagent test 2026-06-21 (cardio-vs-weights)"
+  - id: 2026-06-21-money-page-cta-button-counts-as-the-hub-link
+    project: RWLC
+    rule: "A CTA button pointing at the hub (or any money page) COUNTS as that page's one allowed link. A mid-page conversion CTA must point to /contact-us/ (booking), never the hub; only the single opener text link goes to the hub. (audit.sh now also catches vague attribution + performative honesty deterministically.)"
+    why: "a zero-context agent put one hub link in the opener AND a mid-page 'See How the Program Works' button to the hub, then self-attested 'exactly one hub link' — the rule was silent on CTA buttons"
+    section: accessibility
+    status: incorporated
+    anchor: "overlays/rwlc.md#6-architecture-hub-and-spoke-map"
+    source: "zero-context subagent test 2026-06-21 (cardio-vs-weights)"
+  - id: 2026-06-21-rwlc-no-city-names-use-regional-areas
+    project: RWLC
+    rule: "RWLC copy must NOT name individual cities (not Florence, Little River, Murrells Inlet, North Myrtle Beach, etc.). Use only the regional area names: 'the Pee Dee and Grand Strand areas of South Carolina'. 'Three South Carolina locations' (the count, no cities) is fine. This overrides the global 'name geo nodes for E-E-A-T' guidance for RWLC."
+    why: "the center city labels drift and conflict between sources (overlay said Little River, live hub said North Myrtle Beach); using only the regional areas avoids publishing a stale or wrong city"
+    section: scope
+    status: incorporated
+    anchor: "overlays/rwlc.md#3-locked-facts-verbatim-never-paraphrase-or-invent"
+    source: "user decision 2026-06-21 (cardio-post geo discrepancy)"
+  - id: 2026-06-21-rwlc-no-style-block-and-faq-orange-accepted
+    project: RWLC
+    rule: "RWLC WP body output carries NO <style> block (and no .rwlc-post wrapper): all CSS lives in the theme customizer; output plain semantic HTML using the theme's classes. Separately, the orange #f60 FAQ question color is an ACCEPTED client-approved brand exception to WCAG AA contrast; auditors must NOT flag it."
+    why: "the CSS is already in the theme, so an inline style block is duplication; the #f60 FAQ color is the live-homepage brand style the client has accepted, and was being re-flagged on every audit"
+    section: accessibility
+    status: incorporated
+    anchor: "overlays/rwlc.md#7-html-css-specifics"
+    source: "user decision 2026-06-21 (cardio-post cleanup)"
+  - id: 2026-06-22-performative-honesty-construction-family
+    project: ROC
+    rule: "Performative honesty is a CONSTRUCTION FAMILY, not three fixed strings. Ban in any phrasing: 'the honest answer/part/truth/framing/caveat (is/to)...', 'here is/here's the honest...'. Same family and also banned: significance-inflation ('X deserves extra/special weight/attention', 'two patterns deserve extra weight regardless of width') and the disclaimer-pivot ('None of this replaces a professional/measured evaluation, but...', '...tells you which lane you are in'). State the fact/caveat directly; drop the scaffolding. audit.sh PERFORMATIVE + new EDITORIAL regexes now catch these deterministically."
+    why: "user hand-found 'Here is the honest part', 'The honest answer to...', 'Two patterns deserve extra weight', 'None of this replaces a measured evaluation, but it tells you which lane you are in', 'A short word on prevention, because...' across many ROC posts; the registry only listed exact strings and the deterministic regex only matched 'here's' (not 'here is') and 'honest truth/answer' (not part/framing/caveat)"
+    section: ai-tell-registry
+    status: incorporated
+    anchor: "core-rules.md#8.8 + audit.sh#10/10c"
+    source: "user read-through 2026-06-22 (ROC blog batch)"
+  - id: 2026-06-22-colon-splice-subheadings
+    project: ROC
+    rule: "Colon-splice SUBHEADINGS ('Slab vs Pier-and-Beam: Which Signs Apply to Your Home') are an AI heading tic. Reword H2/H3 to a plain phrase or a real question. The H1/title MAY keep a colon subtitle. audit.sh now flags '^#{2,6} ...: ...' as SOFT."
+    why: "user flagged colon subheadings as a tic; nothing was catching them"
+    section: ai-tell-registry
+    status: incorporated
+    anchor: "core-rules.md#8.13 + audit.sh#10b"
+    source: "user read-through 2026-06-22 (ROC blog batch)"
+  - id: 2026-06-22-batch-must-run-audit-sh
+    project: ROC
+    rule: "PROCESS: any batch/Workflow that produces drafts MUST run the deterministic audit.sh on every draft as an explicit step. The orchestrator normally runs it via the SubagentStop hook (validate-output.sh), but hooks DO NOT fire inside a Workflow, so a workflow-driven batch silently skips the entire deterministic de-slop layer. Wire `bash ~/.claude/writing-guides/audit.sh <draft>` into the audit stage and gate on 0 HARD violations; do not rely on the LLM audit alone."
+    why: "the ROC 30-post batch ran only the LLM audit-agent + fact-check; audit.sh never ran, so em-dash/performative/colon/etc. tells shipped to WP drafts and the user had to hand-find them"
+    section: process
+    status: incorporated
+    anchor: "writer-orchestrator batch design"
+    source: "ROC blog batch postmortem 2026-06-22"
+  - id: 2026-06-22-shortcodes-do-not-resolve-outside-post-content
+    project: ROC
+    rule: "Shortcodes like [business_name] resolve ONLY in WordPress post CONTENT/body. They DO NOT resolve in the post TITLE, the SLUG, SEO meta title/description, or a baked-in featured-image banner. In all of those, use the literal business name or omit it. Concretely: the seo-agent must NOT put [business_name] (or any [shortcode]) in the SEO title; and the featured-image banner (which renders the title as raster text) must be passed a shortcode-free title. business_name passed to the seo-agent/featured-image step should be the LITERAL name (or empty), even though the writer-agent uses the shortcode in body copy."
+    why: "the ROC batch passed business_name='[business_name]' to every stage; the seo-agent baked '[business_name]' into 9 SEO titles -> WP showed the literal '[business_name]' in the title, polluted the slug ('...-business_name'), and the featured-image skill rendered '[business_name]' as banner text on those 9 images"
+    section: process
+    status: incorporated
+    anchor: "prompts/seo-agent.md + prompts/publish-agent.md (featured-image title)"
+    source: "user spotted literal [business_name] in published post title/slug/image 2026-06-22"
+  - id: 2026-06-22-featured-image-poka-yoke
+    project: ROC
+    rule: "Featured images must be mistake-proofed (poka-yoke), not trusted to a silent skill. PREVENTION in generate_featured_image.py: require_logo=True hard-fails if the logo is missing (no silent text-only); the banner strips any [shortcode] and the SEO '| City | Brand' suffix (headline only); long titles WRAP to two lines, never ellipsis-truncate; asserts logo composited + no shortcode in banner. DETECTION: run validate_featured_image.py before attaching (checks dimensions, descriptive filename, no shortcode/business_name in filename, non-blank logo corner) and gate publish on PASS. The business_name passed to the image/banner must be the LITERAL name, never a shortcode."
+    why: "across the ROC batch the featured images hit four separate defects (missing logo / silent text-only fallback, generic featured-image-NN filenames, [business_name] baked into the banner, ellipsis-truncated banner) and the user had to hand-find each; the skill failed silently every time"
+    section: process
+    status: incorporated
+    anchor: "skills/featured-image/skill.md#mistake-proofing + generate_featured_image.py + validate_featured_image.py"
+    source: "user asked for a poka-yoke mechanism 2026-06-22 (ASQ mistake-proofing)"
+  - id: 2026-06-22-every-post-leads-with-an-intent-h1
+    project: ALL
+    rule: "Every blog post body MUST lead with exactly one <h1>, and that H1 must state the SEARCH INTENT -- what the reader typed / wants answered -- so that reading the H1 alone tells them 'I will get my answer here' (e.g. 'How to Vet a Foundation Repair Company in Texas', 'Is Foundation Repair Worth It? When to Walk Away', 'How Much Foundation Movement Is Actually Normal?'). The H1 is the INTENT headline, NOT the SEO <title> (which keeps its '| City, ST | Brand' suffix for search). The formatter must NEVER strip the writer's H1 on the assumption that 'WP supplies it' WITHOUT verifying the active theme actually outputs an <h1> -- many themes (e.g. lean-theme) render the WP title as a non-semantic <p>, so the body H1 is the page's ONLY h1. If unsure, keep the H1."
+    why: "the orchestrator formatter-agent had a blanket 'no h1, WP supplies it' rule and stripped the writer's H1 from ~16 of 30 ROC posts; lean-theme renders the title as <p>, so those posts ended up with NO h1 at all (SEO + a11y defect the user caught)"
+    section: structure
+    status: incorporated
+    anchor: "core-rules.md (structure/headings) + writer-orchestrator/prompts/formatter-agent.md"
+    source: "user flagged missing H1 on new ROC blog posts 2026-06-22"
+
+  - id: 2026-06-22-featured-image-alt-is-post-summary
+    rule: "Featured-image ALT text must be a single-paragraph summary of the blog post (what it covers + what the reader learns), NOT a description of the photo. Plain literal ASCII, no shortcodes (alt is an HTML attribute; [shortcodes] do not resolve there), no em dashes. Derive from the post body, ~2-4 sentences."
+    why: "user directive 2026-06-22 ('the alt text for each image should be a summary in a single paragraph about the blog post. remember that always'); improves topical relevance/SEO of the featured image"
+    section: images
+    status: incorporated
+    anchor: "skills/featured-image/skill.md + project memory alt-text-is-post-summary"
+    source: "user, ROC featured-image webp rework 2026-06-22"
+
+  - id: 2026-06-22-featured-images-webp-compressed
+    rule: "Blog featured images ship as compressed WebP (Tinify shrink + convert type image/webp). Use descriptive filenames with NO trailing -N dedupe suffix (strip it; it is a legacy holdover). Carry the post-summary alt text onto the new attachment and reattach featured_media."
+    why: "user wanted smaller, modern featured images; Tinify cut the 30 ROC images ~50% (avg ~52KB). The -1 suffix came from re-uploading same-named files and is not wanted."
+    section: images
+    status: incorporated
+    anchor: "agency-dashboard/.env TINIFY_API_KEY + src/lib/tinify.ts (compress); convert via POST {convert:{type:image/webp}} to the shrink result URL"
+    source: "user, ROC featured-image webp rework 2026-06-22"

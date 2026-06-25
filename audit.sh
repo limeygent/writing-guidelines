@@ -74,11 +74,27 @@ add HARD "Non-descriptive link text (>click here<, >learn more<)" "$(count_occur
 # --- 8. Public email address on a service site (HARD per project rule) ---
 add HARD "mailto: link (no public email on service sites)" "$(count_occurrences 'mailto:')"
 
-# --- 9. Rule-of-three / triad commas (SOFT heuristic, model should review) ---
+# --- 9. Vague attribution (HARD — name the source or drop the claim; core-rules 8.6) ---
+VAGUEATTR='studies show|research suggests|experts (agree|say)|it'\''?s well known|it is well known|many believe|a common (target|recommendation|guideline|practice|starting)|commonly recommended'
+add HARD "Vague attribution (name the source or cut it)" "$(count_occurrences "$VAGUEATTR")"
+
+# --- 10. Performative honesty / narrator throat-clearing (HARD — core-rules 8.8) ---
+PERFORMATIVE='the (part|truth|thing) (that )?most [a-z ]{2,30}(skip|skips|miss|misses)|most [a-z ]{2,20}advice (skips|stops|misses)|here ?(is|'\''?s) the (honest|hard|real) (truth|part|answer|framing|caveat|reality)|the honest (truth|answer|part|framing|caveat|reality)|what (most|nobody) [a-z ]{2,30}(won'\''t|don'\''t|doesn'\''t) tell'
+add HARD "Performative honesty / narrator throat-clearing" "$(count_occurrences "$PERFORMATIVE")"
+
+# --- 10b. Colon-splice subheadings (SOFT — AI heading tic; reword the H2/H3, not the H1 title) ---
+COLONHEAD=$(grep -cE '^#{2,6} .+: .+' "$FILE" 2>/dev/null)
+add SOFT "Colon-splice subheadings (## Topic: explainer) — AI heading tic, reword to a plain phrase or question" "$COLONHEAD"
+
+# --- 10c. Editorializing / significance-inflation / disclaimer-pivot tells (HARD — core-rules 8.8/8.1) ---
+EDITORIAL='deserves? (extra|special|particular|added) (weight|attention|mention|consideration|scrutiny|care)|none of this replaces|which lane (you'\''?re|you are) in|tells you which lane'
+add HARD "Editorializing / significance-inflation / disclaimer-pivot" "$(count_occurrences "$EDITORIAL")"
+
+# --- 11. Rule-of-three / triad commas (SOFT heuristic, model should review) ---
 TRIAD='[a-z]+, [a-z]+, and [a-z]+'
 add SOFT "Possible rule-of-three triads (review for cadence)" "$(count_occurrences "$TRIAD")"
 
-# --- 10. Long bulleted/numbered lists (SOFT — >6 items per list is a smell) ---
+# --- 12. Long bulleted/numbered lists (SOFT — >6 items per list is a smell) ---
 BULLETS=$(grep -cE '^\s*([-*]|[0-9]+\.) ' "$FILE" 2>/dev/null)
 add SOFT "Total list items (check no single list exceeds ~6)" "$BULLETS"
 

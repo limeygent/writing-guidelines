@@ -31,7 +31,17 @@ This is positive generation procedure, not just a list of bans. Follow the seque
 8. **Apply the voice** (Section 7), then **strip AI tells** (Section 8), then **dedupe** (Section 9, DRY).
 9. **Format with variety** (Section 10): mix prose, lists, tables, FAQ. Never every section a bullet dump.
 10. **Output paste-ready HTML** (Section 11) with placeholders for unverified facts (Section 5.4).
-11. **Run the pre-publish checklist** (Section 14), then `content-audit.md`.
+11. **Run the pre-publish checklist** (Section 14), then `content-audit.md`. **The LLM audit (`content-audit.md`,
+    scored, ideally by a separate validator agent) is a MANDATORY non-skippable gate, not an optional finish.**
+    `audit.sh` catches only mechanical tells; it cannot judge intent satisfaction, the substitution test, scope
+    drift, DRY, or claim honesty. A draft that has not passed the scored audit is not done. *The deterministic
+    scan is necessary but never sufficient.*
+
+**Intent step, when it can be skipped:** Step 1 (triangulate intent) may be skipped ONLY when an upstream
+audit already resolved this exact page's intent from real demand (e.g. a bulk search-intent audit that set the
+canonical + redirects). For a net-new or never-analyzed page, intent must be DISCOVERED FROM EVIDENCE (live
+SERP + People Also Ask, plus GSC query data if the URL exists) before writing, never assumed from the topic
+label. Skipping the intent step is never a license to skip the LLM audit (step 11).
 
 **Build process (when producing many pages):** pilot the HARDEST page first, get it approved, then batch
 using the approved page as the gold-standard example. Pair a builder with a separate validator/audit agent
@@ -160,6 +170,10 @@ fact mappable as **entity -> attribute -> value**. Every anchorable statement pa
 - Do not oversimplify into a bare data point that misleads ("$49/month" with no statement of what it
   includes). *Why: a bare number without its qualifier is a false claim.*
 - No unresolved coreference. No elegant variation (do not cycle synonyms for the same entity to sound varied).
+- **If the client overlay carries a triple bank (overlay §8), draw anchorable statements from it before
+  inventing new ones** — the bank's rows are pre-vetted entity → attribute → value facts. Never generate
+  brand triples unvetted: every triple obeys claim honesty (Section 5.4), and an unverifiable one stays a
+  `[VERIFY]` placeholder rather than shipping.
 
 ### 5.2 Chunk isolation for RAG (critical)
 
@@ -178,6 +192,48 @@ a specific only this provider can claim. Run it section by section, not on one l
 - Keep name-swappable content under 40% of body words.
 - Unique-data density: ≥3 provider-specific sentences per 1000 body words.
 - Include ≥1 unique angle that 5+ competitors would not state, and ≥3 externally verifiable trust signals.
+
+### 5.3a Triple deployment and entity co-occurrence
+
+A semantic triple is the smallest fact a machine reads cleanly: **Subject → Predicate → Object**, fixed
+order ("Rapid Weight Loss Centers prescribes compounded semaglutide"). A bare brand *mention* makes the
+model guess the relationship from surrounding text; a mention wrapped in a triple hands it the entity *and*
+the relationship at once. Mention plus triple beats mention alone — one gets you named, the other gets you
+understood well enough to be cited. How to deploy them in prose:
+
+- **Associate the brand with its category and adjacent/competitor entities (new).** Place the brand in
+  explicit relationships with the category and the named things a reader searches, so an LLM learns the
+  category membership and "would be remiss not to mention us in the same breath" as a competitor. Strongest
+  on mid/bottom-funnel pages — comparisons, "X vs Y", reviews, best-of/listicles. *Why: an entity an LLM
+  never filed under a category cannot surface in that category's answers.*
+- **Answer-first sentence phrasing (new).** Lead the sentence with the claim, not the attribution: "Phentermine
+  suppresses appetite, according to the prescribing guidance," NOT "According to the prescribing guidance,
+  phentermine suppresses appetite." Editors hate it; do it anyway — both humans and LLMs skim the front of
+  the sentence.
+- **One clean triple per core concept, not a wall of them.** Heuristic: "would reading this make a human throw
+  their phone in the pool?" This is the DRY rule and the cohesion guardrail (Section 5, end) restated for
+  triples — define a fact once in its canonical chunk; do not stack dictionary entries.
+- **Put the triple early in the paragraph** so an extracted ~500-token chunk still represents the idea
+  (Section 5.2). Order sentences so the lead is the fact, not the wind-up.
+- **One source for humans and bots (new, anti-pattern).** Never write a separate machine-only copy of a page:
+  near-duplicate human/bot versions risk a similarity penalty, and a human who hits the bot version remembers
+  the brand as low-quality. Feed two birds with one scone.
+
+Worked example — plain prose rewritten as triples (from HubSpot's published +58% AI mentions / +642% AI
+citations test):
+
+- Prose: "With drag-and-drop functionality and an intuitive interface, this tool makes it easier than ever to
+  build beautiful campaigns, automate follow-ups, and analyze performance — no coding necessary."
+- Triples: "HubSpot offers an email marketing tool that supports drag-and-drop campaign creation." /
+  "Marketers can automate follow-ups using built-in workflows." / "HubSpot's email analytics provide insights
+  on open rates, click-throughs, and engagement trends." / "No coding is required to design personalized emails."
+
+Triples are also the native format of Google's Knowledge Graph and map ~1:1 onto Schema.org JSON-LD, so the
+same work that earns LLM citations strengthens classic search. Triples are *necessary* for AEO, *beneficial*
+for SEO — but never sufficient alone (they ride alongside schema, links, and the rest of the stack).
+
+*Provenance: this subsection and the +58%/+642% example derive from Sizemore and SEO Notebook (Steve Toth /
+HubSpot). Originals + the trace for every figure: `sources/INDEX.md`.*
 
 ### 5.4 Claim honesty (never fabricate)
 
@@ -304,13 +360,23 @@ the primary detector. *Why each is banned: it reads as machine-generated and ero
 7. **Promotional / travel-brochure language.** "boasts," "nestled," "in the heart of," "renowned." Cut it.
 8. **Performative honesty / narrator throat-clearing.** "Let's start with the truth most pages skip," "Here
    is the honest part," "An Honest Answer," "The good news is," "You now know more than most clinics tell you."
-9. **Throat-clearing intros.** "It's important to understand," "When it comes to," "Prior to."
+   This is a CONSTRUCTION FAMILY, not three fixed strings: ban "the honest answer/part/truth/framing/caveat
+   (is/to)…" and "here is/here's the honest…" in any phrasing. State the fact directly without announcing you
+   are being honest. Same family: the **significance-inflation flag** ("X deserves extra/special weight/
+   attention," "two patterns deserve extra weight regardless of width") and the **disclaimer-pivot** ("None of
+   this replaces a professional/measured evaluation, but…," "…tells you which lane you are in"). Give the point
+   or the caveat plainly; drop the "none of this replaces… but" scaffolding and "which lane you are in" filler.
+9. **Throat-clearing intros.** "It's important to understand," "When it comes to," "Prior to," "A short word
+   on X, because…," "A quick note on X." Just say the thing; do not announce that you are about to say it.
 10. **AI-signature transitions.** "That said," "What's more," "Furthermore," "Moreover," "Additionally," "In
     essence," "Ultimately," "Here's the thing:," "It's worth noting that," "In conclusion." Start the next
     sentence with its content instead.
 11. **Filler tropes / generic behavioral fluff.** "eat less, move more," "in today's fast-paced world,"
     "now more than ever," "take control of your health," "losing weight is a journey." Zero info gain.
 12. **Empathy fluff.** "You're not alone," "Don't worry," "We understand." (Brief, specific empathy is fine.)
+13. **Colon-splice subheadings.** "Slab vs Pier-and-Beam: Which Signs Apply to Your Home," "Drainage: What to
+    Check First." The "Topic: explainer" subheading is an AI heading tic. Reword H2/H3 to a plain phrase or a
+    real question ("Which signs point to slab vs pier-and-beam?"). The H1/title may keep a colon subtitle.
 
 ### Lexical / punctuation tells (weaker signal; still clean obvious cases)
 
@@ -373,9 +439,14 @@ Mix prose, short lists, tables, and FAQ accordions. Making every section a bulle
 - **WCAG AA contrast on every text/background pair:** 4.5:1 normal text, 3:1 large text + UI. Check the
   math; do not eyeball saturated brand mid-tones (they almost always fail on white). Fix by darkening the
   text, not lightening the background. Check every interactive state.
-- **Descriptive link text:** every anchor describes its destination in isolation. Ban "Learn more," "Click
-  here," "Read more," "Here," and icon-only links. Phone CTAs spell out the number. Vary internal anchor
-  text. *Why: fails WCAG 2.4.4 and zeroes out the anchor-text signal for SEO and LLM crawlers.*
+- **Descriptive link text:** every anchor describes its destination's TOPIC in isolation. Ban "Learn more,"
+  "Click here," "Read more," "Here," and icon-only links. **Never anchor an internal link on the
+  brand/business/practitioner name when it points to a topic page** (a name is navigational, not topical):
+  keep the brand as a plain-text entity mention and put the link on a phrase that names the destination's
+  subject, e.g. link "medical weight loss program" -> the service hub, not "Acme Weight Loss Centers."
+  Phone CTAs spell out the number. Vary internal anchor text across the page. *Why: fails WCAG 2.4.4 and
+  zeroes out the anchor-text signal for SEO and LLM crawlers; a brand-anchored link wastes the topical
+  signal the linked money page needs to rank.*
 - **Page-level WCAG:** skip link, a `main` landmark, `focus-visible` (3px outline), `scroll-padding-top` so
   a sticky header doesn't obscure focused elements, muted text ≥4.5:1.
 - `role="doc-biblioentry"` is deprecated: strip it from reference `<li>` (keep `doc-bibliography` +

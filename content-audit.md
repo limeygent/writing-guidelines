@@ -32,20 +32,21 @@ Writer submits content
 
 ## 1. Word Count Check (20 points)
 
-| Word Count | Points | Status |
-|------------|--------|--------|
-| Under 1,200 | 20 | ✅ Ideal |
-| 1,200-1,500 | 18 | ✅ Good |
-| 1,500-1,800 | 12 | ⚠️ Review |
-| 1,800-2,000 | 5 | ⚠️ Needs cuts |
-| Over 2,000 | 0 | ❌ Fail |
+Score against the band for the page **TYPE** (reconciled with core-rules.md Section 15; a comparison page
+or a demand-preserving merge legitimately runs longer than a short how-to, and must NOT be auto-failed for it).
 
-**How to check:**
-```bash
-wc -w content.md
-```
+| Page type | Full (20) | Good (15) | Review (10) | Needs cuts (5) | Over band (0) |
+|---|---|---|---|---|---|
+| **Blog / how-to** | ≤1,300 | 1,300-1,600 | 1,600-1,900 | 1,900-2,100 | >2,100 |
+| **Service / location** | ≤1,500 | 1,500-1,800 | 1,800-2,000 | 2,000-2,300 | >2,300 |
+| **Comparison / merge** | ≤2,200 | 2,200-2,500 | 2,500-2,800 | 2,800-3,200 | >3,200 |
+| **Emergency** | ≤750 | 750-900 | 900-1,050 | 1,050-1,250 | >1,250 |
 
-**If over 1,500:** Earlier sections are likely bloated. Don't truncate the end.
+**How to check:** `wc -w` on the **visible body only** (exclude the HTML comment header and the `<style>` block).
+
+**If over the band:** earlier sections are bloated; trim them, do not truncate the end. For a merge, trimming
+the commodity sections also raises the substitution-test ratio (core-rules Section 5.3), so it fixes two
+findings at once. Never inject brand name-drops into commodity copy to pass the substitution test; cut instead.
 
 ---
 
@@ -53,23 +54,22 @@ wc -w content.md
 
 ### Concept Repetition Check
 
-Run these grep commands and record occurrence counts:
+Identify the page's 3-5 key concepts/entities (whatever this page is actually about), then count each. The
+concept names are niche-specific; the thresholds are not.
 
 ```bash
-# Key concepts (should appear ≤2 times each)
-grep -in "filter" content.md | wc -l
-grep -in "thermostat" content.md | wc -l
-grep -in "vent" content.md | wc -l
-grep -in "pilot" content.md | wc -l
+# Each of the page's key concepts should appear in ≤2 distinct locations (not restated section to section)
+grep -in "<concept-1>" content.md | wc -l
+grep -in "<concept-2>" content.md | wc -l
 
-# Professional mentions (should be ≤3)
-grep -ic "professional\|technician\|hvac tech\|contractor" content.md
+# Provider mentions (brand / practitioner / "the clinic" etc.) should total ≤3 outside the opener and CTA
+grep -ic "<brand>\|<practitioner>\|the (clinic|practice|team)" content.md
 ```
 
 | Check | Threshold | Points |
 |-------|-----------|--------|
-| Each concept ≤2 locations | Pass all | 15 |
-| Professional mentions ≤3 | Pass | 10 |
+| Each key concept ≤2 locations | Pass all | 15 |
+| Provider mentions ≤3 (outside opener/CTA) | Pass | 10 |
 | No phrase 3+ times | Pass | 5 |
 
 **Scoring:**
@@ -158,13 +158,14 @@ grep -ic "let's dive in" content.md
 
 ## 5. Scope Check (15 points)
 
-**Manual review - check for content that doesn't serve search intent:**
+**Manual review - check for content that doesn't serve THIS page's search intent (hub-and-spoke discipline,
+core-rules Section 2-3):**
 
-- [ ] Financing/payment plans mentioned in non-cost article? (-5)
-- [ ] Regional content >3 sentences? (-5)
-- [ ] Preventive maintenance in troubleshooting article? (-5)
-- [ ] Service expectations >100 words? (-5)
-- [ ] Causes listed >5 for troubleshooting intent? (-5)
+- [ ] Pricing / tiers / cost on a page the hub owns? (-5)
+- [ ] Onboarding / first-visit / insurance / booking detail a supporting page should route up, not host? (-5)
+- [ ] Per-product/treatment mechanism a spoke owns, written out here instead of linked? (-5)
+- [ ] A whole section that answers a different intent (off-topic drift, no single sub-query it serves)? (-5)
+- [ ] City/location names on a service page that has separate location pages? (-5)
 
 | No scope issues | 15 points |
 | 1 issue | 10 points |

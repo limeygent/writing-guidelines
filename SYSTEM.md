@@ -16,7 +16,7 @@ one rule-set so the next first draft already knows it.
 
 | Layer | Files | Model-specific? |
 |---|---|---|
-| **Brain** (rules) | `core-rules.md`, `content-audit.md`, `format-*.md`, `ymyl-overlay.md`, `overlays/*.md`, `lessons.yaml` | No — plain markdown/yaml |
+| **Brain** (rules) | `core-rules.md`, `content-audit.md`, `format-*.md`, `ymyl-overlay.md`, `overlays/*.md` (incl. each client's §8 brand triple bank — the source-of-truth fact list a writer draws anchorable statements from), `lessons.yaml` | No — plain markdown/yaml |
 | **Validator + control** (code) | `audit.sh`, `quality-gate.sh`, `quality-loop.sh`, `consolidate.sh`, `log-lesson.sh` | No — POSIX shell |
 | **Loader / model seam** | `adapters/claude.sh`, `adapters/codex.sh` | Yes — one invocation line each |
 
